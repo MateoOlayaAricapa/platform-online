@@ -1,0 +1,36 @@
+@import '../../../../styles/settings';
+
+.errorMessage {
+    width: 100%;
+    height: 3.5em;
+    padding: 1em;
+    box-sizing: border-box;
+    background-color: $color11;
+    border-radius: 0em 0.5em 0.5em 0em;
+    border-left: 5px solid $color12;
+
+    @include displayFlex(
+        center,
+        space-between,
+        none,
+        none,
+        0
+    );
+
+    h1 {
+        font-size: 0.9em;
+        font-weight: 500;
+        color: $color12;
+    }
+
+    button {
+        width: 6em;
+        height: 2.2em;
+        background-color: transparent;
+        border: 2px solid $color12;
+
+        font-size: 0.8em;
+        font-weight: 600;
+        color: $color12;
+    }
+}

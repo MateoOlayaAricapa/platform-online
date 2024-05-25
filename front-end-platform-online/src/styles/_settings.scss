@@ -1,0 +1,22 @@
+//* Colors
+$color1: #151718;
+$color2: #F5F5F5;
+$color3: #674EFF;
+$color4: #FFFFFF;
+$color5: #A5A5A5;
+$color6: #707172;
+$color7: #E9E9E9;
+$color8: #989EAA;
+$color9: #F8F9FB;
+$color10:#E0DBFF;
+$color11:#FCDEDC;
+$color12:#E85047;
+
+//* Fonts
+$main-font: "Poppins", sans-serif;
+
+//* Components
+@import './components';
+
+//* Helpers
+@import './displayFlex';
