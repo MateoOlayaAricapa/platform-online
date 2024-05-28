@@ -1,3 +1,4 @@
+import { ValidatedValueTexfield } from "../../../../helpers/validated-textfield";
 import { useForm } from "../../../../hooks/useForm"
 import { FormRegister, ListTextFields } from "../../../interfaces/interfaces";
 
@@ -31,7 +32,7 @@ export const useRegister = () => {
         { 
             title: 'Correo electrónico', 
             type: 'email', 
-            value: stateForm.name, 
+            value: stateForm.email, 
             name: 'email', 
             placeHolder: 'Ingresa tu correo', 
             onChange: onInputChange 
@@ -48,11 +49,10 @@ export const useRegister = () => {
 
     //* Methods.
     const onHandleSubmitRegister = ( event: React.FormEvent<HTMLFormElement> ): void => {
-
         event.preventDefault();
 
-        console.log( stateForm );
-
+        const { status, errorMessage } = ValidatedValueTexfield.isValidated( stateForm );
+        if ( !status ) return alert( errorMessage );
     }
 
     return {

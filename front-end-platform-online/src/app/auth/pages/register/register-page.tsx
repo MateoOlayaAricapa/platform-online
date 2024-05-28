@@ -31,6 +31,7 @@ export const RegisterPage = () => {
                     {
                         textfields.map(({ type, name, onChange, placeHolder, title, value }) => (
                             <Textfield
+                                key={ name }
                                 title={ title }
                                 type={ type }
                                 value={ value }
