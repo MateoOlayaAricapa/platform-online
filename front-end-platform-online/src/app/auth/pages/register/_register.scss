@@ -1,0 +1,82 @@
+@import '../../../../styles/settings';
+
+.registerPage {
+
+    &__container {
+        width: 100%;
+        max-width: 50em;
+
+        @include displayFlex(
+            center,
+            center,
+            column,
+            none,
+            2em
+        );
+
+        &__logoTitle {
+            width: 100%;
+
+            @include displayFlex(
+                center,
+                center,
+                column,
+                none,
+                1em
+            );
+
+            img {
+                width: 25%;
+            }
+
+            h1 {
+                text-align: center;
+                font-size: 1.8em;
+                font-weight: 600;
+            }
+        }
+
+        form {
+            width: 58%;
+
+            @include displayFlex(
+                center,
+                center,
+                column,
+                none,
+                1em
+            );
+        }
+
+        &__login {
+            width: 58%;
+            padding: 1.5em 0em 0em 0em;
+            box-sizing: border-box;
+            border-top: 2px solid $color7;
+
+            @include displayFlex(
+                center,
+                space-between,
+                none,
+                none,
+                0
+            );
+
+            h1 {
+                font-size: 1.1em;
+                font-weight: 600;
+            }
+            
+            button {
+                width: 40%;
+                height: 2.5em;
+                background-color: transparent;
+                color: $color3;
+                border: 1px solid $color3;
+
+                font-weight: 500;
+            }
+        }
+    }
+
+}
