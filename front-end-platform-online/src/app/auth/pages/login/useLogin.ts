@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { ValidatedValueTexfield } from "../../../../helpers/validated-textfield";
 import { useForm } from "../../../../hooks/useForm"
 import { FormLogin } from "../../../interfaces/interfaces";
@@ -10,6 +11,8 @@ export const useLogin = () => {
         password: ''
     });
 
+    const navigate = useNavigate();
+
     //* Methods.
     const onHandleSubmit = ( event: React.FormEvent<HTMLFormElement> ): void => {
         event.preventDefault();
@@ -18,13 +21,20 @@ export const useLogin = () => {
         if ( !status ) return alert( errorMessage );
     }
 
+    const onGoToRegister = (): void => {
+        navigate('/auth/register', {
+            replace: false
+        });
+    }
+
     return {
         //* Attributes.
         stateForm,
 
         //* Methods.
         onInputChange,
-        onHandleSubmit
+        onHandleSubmit,
+        onGoToRegister,
     }
 
 }

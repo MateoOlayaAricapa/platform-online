@@ -10,7 +10,7 @@ import { ErrorMessage } from '../../components/error/errorMessage';
 
 export const LoginPage = () => {
 
-    const { onInputChange, stateForm, onHandleSubmit } = useLogin();
+    const { onInputChange, stateForm, onHandleSubmit, onGoToRegister } = useLogin();
 
     return (
         <div className="loginPage auth">
@@ -65,7 +65,7 @@ export const LoginPage = () => {
 
                         <h1>¿Aún no tienes cuenta?</h1>
 
-                        <button type='button' className='style-button'>
+                        <button type='button' className='style-button' onClick={ onGoToRegister }>
                             Comienza ahora
                         </button>
                         

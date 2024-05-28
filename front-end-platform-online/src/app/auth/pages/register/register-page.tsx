@@ -9,7 +9,7 @@ import { ErrorMessage } from '../../components/error/errorMessage';
 
 export const RegisterPage = () => {
 
-    const { onHandleSubmitRegister, textfields } = useRegister();
+    const { onHandleSubmitRegister, textfields, onGoToLogin } = useRegister();
 
     return (
         <div className='registerPage auth'>
@@ -53,7 +53,7 @@ export const RegisterPage = () => {
 
                     <h1>¿Ya tienes una cuenta?</h1>
 
-                    <button type='button' className='style-button'>
+                    <button type='button' className='style-button' onClick={ onGoToLogin }>
                         Inicia sesión ahora
                     </button>
                     
