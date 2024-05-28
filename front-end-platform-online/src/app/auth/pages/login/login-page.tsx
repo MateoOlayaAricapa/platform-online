@@ -1,4 +1,3 @@
-import '../../../assets/styles/_auth-styles.scss'
 import './_login-page.scss';
 
 import imageLogin from "../../../assets/images/ImagenLogin.jpg";

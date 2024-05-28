@@ -1,4 +1,3 @@
-import '../../../assets/styles/_auth-styles.scss';
 import './_register.scss';
 
 import { Textfield } from '../../../../components/textfield/textfield';
