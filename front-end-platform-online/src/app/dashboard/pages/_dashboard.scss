@@ -1,0 +1,17 @@
+@import '../../../styles/settings';
+
+.dashboard {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    
+    font-family: $main-font;
+
+    @include displayFlex(
+        center,
+        flex-start,
+        column,
+        none,
+        0
+    );
+}
