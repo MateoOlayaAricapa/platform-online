@@ -1,10 +1,10 @@
 import { useForm } from "../../../../hooks/useForm"
-import { formLogin } from "../../../interfaces/interfaces";
+import { FormLogin } from "../../../interfaces/interfaces";
 
 export const useLogin = () => {
 
     //* Attributes.
-    const { onInputChange, stateForm } = useForm<formLogin>({
+    const { onInputChange, stateForm } = useForm<FormLogin>({
         email: '',
         password: ''
     });
