@@ -1,4 +1,5 @@
 import './_header.scss';
+import { Search } from '../search/search';
 
 import logo from "../../../assets/images/Logo.png";
 
@@ -10,6 +11,7 @@ export const Header = () => {
             { /* Div que contiene el logo y la componente search */ }
             <div className='header__containerLogoSearch'>
                 <img src={ logo } alt="Logo" />
+                <Search onSearch={ () => '' }/>
             </div>
 
             { /* Div que contiene la foto de perfil */ }
