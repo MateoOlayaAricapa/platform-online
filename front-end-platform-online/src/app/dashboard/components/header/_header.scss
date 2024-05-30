@@ -5,6 +5,7 @@
     padding: 1em 2em 1em 2em;
     box-sizing: border-box;
     border-bottom: 1px solid $color7;
+    position: relative;
 
     @include displayFlex(
         center,

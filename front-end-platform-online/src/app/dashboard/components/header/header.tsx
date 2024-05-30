@@ -2,6 +2,7 @@ import './_header.scss';
 import { Search } from '../search/search';
 
 import logo from "../../../assets/images/Logo.png";
+import { Menu } from '../menu/menu';
 
 export const Header = () => {
 
@@ -26,6 +27,9 @@ export const Header = () => {
                 </div>
 
             </div>
+
+            { /* Componente del menú */ }
+            <Menu/>
 
         </div>
     );
