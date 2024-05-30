@@ -1,0 +1,49 @@
+@import '../../../../styles/settings';
+
+.search {
+    width: 100%;
+    height: 2.8em;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border-radius: 50px;
+    border: 1px solid $color3;
+    background-color: $color9;
+
+    @include displayFlex(
+        center,
+        center,
+        none,
+        none,
+        0.5em
+    );
+
+    button {
+        width: 2.2em;
+        height: 2.2em;
+        border-radius: 50px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        @include displayFlex(
+            center,
+            center,
+            none,
+            none,
+            0
+        );
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    button:nth-of-type(2) {
+        background-color: $color3;
+
+        img {
+            width: 60%;
+        }
+    }
+}

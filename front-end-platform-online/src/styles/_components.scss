@@ -29,3 +29,15 @@
         0
     );
 }
+
+.style-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    
+    font-family: $main-font;
+    font-size: 0.8em;
+    font-weight: 400;
+    color: $color1;
+}

@@ -20,3 +20,7 @@ export interface ListTextFields {
     placeHolder?: string;
     onChange?   : ChangeEventHandler<HTMLInputElement>;
 }
+
+export interface OnSearchArgs {
+    valueToSearch: string;
+}
