@@ -33,7 +33,7 @@ export const Menu = () => {
 
                 <ul>
                     <li>
-                        <Link to=''>
+                        <Link to='/home'>
                             <img src={ iconHome } alt="" />
                             Inicio
                         </Link>
@@ -42,14 +42,14 @@ export const Menu = () => {
                     <div className='divisor' />
 
                     <li>
-                        <Link to=''>
+                        <Link to='/my-courses'>
                             <img src={ iconCourses } alt="" />
                             Mis cursos
                         </Link>
                     </li>
                     
                     <li>
-                        <Link to=''>
+                        <Link to='/instructor'>
                             <img src={ iconInstructor } alt="" />
                             Instructor
                         </Link>
@@ -58,7 +58,7 @@ export const Menu = () => {
                     <div className='divisor' />
 
                     <li>
-                        <Link to=''>
+                        <Link to='/community'>
                             <img src={ iconCommunity } alt="" />
                             Comunidad
                         </Link>
@@ -67,7 +67,7 @@ export const Menu = () => {
                     <div className='divisor' />
 
                     <li>
-                        <Link to=''>
+                        <Link to='/logout'>
                             <img src={ iconLogout } alt="" />
                             Cerrar sesión
                         </Link>
