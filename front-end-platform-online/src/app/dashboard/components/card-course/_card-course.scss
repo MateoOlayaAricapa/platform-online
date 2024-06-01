@@ -1,0 +1,177 @@
+@import '../../../../styles/settings';
+
+.cardCourse {
+   width: 100%;
+   height: 13em;
+   border: 1px solid $color7;
+   border-radius: 10px; 
+   padding: 0.8em;
+   box-sizing: border-box;
+   background-color: $color4;
+
+   cursor: pointer;
+   transition: 0.3s ease-in-out;
+
+   &:hover{
+    box-shadow: 0px 10px 19px -6px rgba(0,0,0,0.1);
+   }
+
+   @include displayFlex(
+        center,
+        center,
+        none,
+        none,
+        1em
+   );
+
+   &__image {
+        width: 20em;
+        height: 100%;
+        border-radius: 10px;
+        background-color: $color3;
+        overflow: hidden;
+
+        @include displayFlex(
+            center,
+            center,
+            none,
+            none,
+            0
+        );
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+   }
+
+   &__information {
+        width: calc( 100% - 20em );
+        height: 100%;
+
+        @include displayFlex(
+            flex-start,
+            center,
+            column,
+            none,
+            0.5em
+        );
+
+        h2 {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: $color1;
+        }
+
+        h2:nth-of-type(2) {
+            font-weight: 400;
+        }
+
+        h2:nth-of-type(3) {
+            font-weight: 600;
+            color: $color6;
+        }
+
+        &__details {
+            width: 100%;
+
+            @include displayFlex(
+                center,
+                flex-start,
+                none,
+                none,
+                1em
+            );
+
+            div {
+                width: 10em;
+                @include displayFlex(
+                    center,
+                    flex-start,
+                    none,
+                    none,
+                    0.5em
+                );
+
+                img {
+                    width: 12%;
+                    object-fit: cover;
+                }
+
+                h2 {
+                    color: $color6;
+                    font-size: 1em;
+                    font-weight: 400;
+                }
+            }
+        }
+   }
+}
+
+.cardCourseType {
+   width: 21em;
+   border: 1px solid $color7;
+   border-radius: 10px; 
+   padding: 0.8em;
+   box-sizing: border-box;
+   background-color: $color4;
+
+   cursor: pointer;
+   transition: 0.3s ease-in-out;
+
+   &:hover{
+    box-shadow: 0px 10px 19px -6px rgba(0,0,0,0.1);
+   }
+
+   @include displayFlex(
+        center,
+        center,
+        column,
+        none,
+        0.5em
+   );
+
+    &__image {
+        width: 100%;
+        height: 11em;
+        border-radius: 10px;
+        background-color: $color3;
+        overflow: hidden;
+
+        @include displayFlex(
+            center,
+            center,
+            none,
+            none,
+            0
+        );
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__information {
+        width: 100%;
+
+        @include displayFlex(
+            flex-start,
+            center,
+            column,
+            none,
+            0.5em
+        );
+
+        h2 {
+            font-size: 1em;
+            font-weight: 600;
+            color: $color1;
+        }
+
+        h2:nth-of-type(2) {
+            font-weight: 600;
+            color: $color6;
+        }
+    }
+}
