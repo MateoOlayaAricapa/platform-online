@@ -36,8 +36,8 @@ export const Menu = ({ onHandleHoveredMenu }: MenuProps) => {
             <div className='menu__optionsMenu'>
 
                 <ul>
-                    <li>
-                        <Link to='/home'>
+                    <li onClick={ onHandleHoveredMenu }>
+                        <Link to='/dashboard/home'>
                             <img src={ iconHome } alt="" />
                             Inicio
                         </Link>
@@ -45,15 +45,15 @@ export const Menu = ({ onHandleHoveredMenu }: MenuProps) => {
 
                     <div className='divisor' />
 
-                    <li>
-                        <Link to='/my-courses'>
+                    <li onClick={ onHandleHoveredMenu }>
+                        <Link to='/dashboard/my-courses'>
                             <img src={ iconCourses } alt="" />
                             Mis cursos
                         </Link>
                     </li>
                     
-                    <li>
-                        <Link to='/instructor'>
+                    <li onClick={ onHandleHoveredMenu }>
+                        <Link to='/dashboard/instructor'>
                             <img src={ iconInstructor } alt="" />
                             Instructor
                         </Link>
@@ -61,8 +61,8 @@ export const Menu = ({ onHandleHoveredMenu }: MenuProps) => {
 
                     <div className='divisor' />
 
-                    <li>
-                        <Link to='/community'>
+                    <li onClick={ onHandleHoveredMenu }>
+                        <Link to='/dashboard/community'>
                             <img src={ iconCommunity } alt="" />
                             Comunidad
                         </Link>
@@ -71,7 +71,7 @@ export const Menu = ({ onHandleHoveredMenu }: MenuProps) => {
                     <div className='divisor' />
 
                     <li>
-                        <Link to='/logout'>
+                        <Link to='/dashboard/logout'>
                             <img src={ iconLogout } alt="" />
                             Cerrar sesión
                         </Link>

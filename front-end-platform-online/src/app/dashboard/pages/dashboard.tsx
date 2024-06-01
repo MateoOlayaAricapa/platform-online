@@ -1,5 +1,6 @@
 import { Header } from '../components/header/header';
 import './_dashboard.scss';
+import { DashboardRoutes } from '../routes/dashboard-routes';
 
 export const Dashboard = () => {
 
@@ -10,6 +11,7 @@ export const Dashboard = () => {
             <Header/>
             
             { /* Establecer rutas para sub-páginas */ }
+            <DashboardRoutes/>
 
         </div>
     );
