@@ -7,10 +7,14 @@ import iconInstructor from '../../../assets/images/instructor.png';
 import iconCommunity from '../../../assets/images/comunidad.png';
 import iconLogout from '../../../assets/images/cerrar-sesion.png';
 
-export const Menu = () => {
+interface MenuProps {
+    onHandleHoveredMenu: () => void;
+}
+
+export const Menu = ({ onHandleHoveredMenu }: MenuProps) => {
 
     return (
-        <div className='menu'>
+        <div className='menu' onMouseLeave={ onHandleHoveredMenu }>
             
             { /* Div que contiene la foto, nombre y correo del usuario */ }
             <div className='menu__userProfile'>

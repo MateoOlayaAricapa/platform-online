@@ -1,13 +1,20 @@
 import './_header.scss';
 import { Search } from '../search/search';
+import { Menu } from '../menu/menu';
+import { useState } from 'react';
 
 import logo from "../../../assets/images/Logo.png";
-import { Menu } from '../menu/menu';
 
 export const Header = () => {
 
+    const [ canShowMenu, setcanShowMenu ] = useState<boolean>(false);
+
     const onHandleProcessSearch = ({ valueToSearch }: { valueToSearch: string }) => {
         console.log( valueToSearch );
+    }
+
+    const onHandleHoveredMenu = () => {
+        setcanShowMenu( prevHovered => !prevHovered );
     }
 
     return (
@@ -22,14 +29,14 @@ export const Header = () => {
             { /* Div que contiene la foto de perfil */ }
             <div className='header__containerPhotoPerfil'>
 
-                <div>
+                <div onMouseEnter={ onHandleHoveredMenu }>
                     <img src="" alt="" />
                 </div>
 
             </div>
 
             { /* Componente del menú */ }
-            <Menu/>
+            { canShowMenu && <Menu onHandleHoveredMenu={ onHandleHoveredMenu }/> }
 
         </div>
     );
