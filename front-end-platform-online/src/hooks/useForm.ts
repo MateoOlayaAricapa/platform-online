@@ -6,7 +6,7 @@ export const useForm = <T>( initialStateForm: T ) => {
     const [ stateForm, setStateForm ] = useState( initialStateForm );
 
     //* Methods.
-    const onInputChange = ( { target }: ChangeEvent<HTMLInputElement> ): void => {
+    const onInputChange = ( { target }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> ): void => {
         const { value, name } = target;
         setStateForm({ ...stateForm, [name]: value });
     }
