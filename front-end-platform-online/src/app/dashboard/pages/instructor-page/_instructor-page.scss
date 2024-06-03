@@ -1,0 +1,117 @@
+@import '../../../../styles/settings';
+
+.instructorPage {
+    width: 100%;
+    padding: 2em;
+    box-sizing: border-box;
+
+    @include displayFlex(
+        center,
+        center,
+        none,
+        none,
+        0
+    );
+
+    &__container {
+        width: 100%;
+        max-width: 80em;
+
+        @include displayFlex(
+            flex-start,
+            center,
+            none,
+            none,
+            0
+        );
+
+        &__createCourse {
+            width: 80%;
+
+            @include displayFlex(
+                flex-start,
+                center,
+                column,
+                none,
+                2em
+            );
+
+            &__titles {
+                width: 100%;
+
+                h2 {
+                    font-size: 1.6em;
+                    font-weight: 600;
+                }
+    
+                p {
+                    font-size: 1em;
+                    
+                    span {
+                        color: $color3;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            &__data {
+                width: 100%;
+
+                @include displayFlex(
+                    center,
+                    space-between,
+                    none,
+                    wrap,
+                    1.5em
+                );
+
+                &__videoImage {
+                    width: 48%;
+
+                    @include displayFlex(
+                        center,
+                        center,
+                        column,
+                        none,
+                        1.5em
+                    );
+
+                    &__content {
+                        width: 100%;
+                        height: 16em;
+                        border-radius: 10px;
+                        background-color: $color10;
+                        overflow: hidden;
+
+                        @include displayFlex(
+                            center,
+                            center,
+                            none,
+                            none,
+                            0
+                        );
+
+                        img {
+                            width: 10%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__publishCourses {
+            width: 35%;
+            background-color: blue;
+        }
+    }
+}
+
+.custom-textfield {
+    
+    div {
+        height: 3em;
+        border: 1px solid $color7;
+    }
+
+}
