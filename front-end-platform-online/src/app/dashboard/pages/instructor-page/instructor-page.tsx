@@ -67,7 +67,12 @@ export const InstructorPage = () => {
 
                         </div>
 
-                        
+                        <Textfield
+                            type='textArea'
+                            title='Descripción'
+                            placeHolder='Ingresa una descripción para el curso'
+                            className='custom-textfield-area'
+                        />
                     
                     </div>
 
