@@ -11,8 +11,23 @@ export const useForm = <T>( initialStateForm: T ) => {
         setStateForm({ ...stateForm, [name]: value });
     }
 
+    const onInputChangeSelect = ( { name, value }: { value: string; name: string } ): void => {
+        setStateForm({ ...stateForm, [name]: value });
+    }
+
     const onInputReset = (): void => {
         setStateForm({ ...initialStateForm });
+    }
+
+    const onAddNewAttribute = ( name: string, value: string ): void => {
+        setStateForm({ ...stateForm, [name]: value });
+    }
+
+    const onDeleteAttribute = ( name: keyof T ): void => {
+
+        const { [name]: toDelete, ...newForm } = stateForm;
+        setStateForm( newForm as T );
+
     }
 
     return {
@@ -21,7 +36,10 @@ export const useForm = <T>( initialStateForm: T ) => {
         
         //* Methods.
         onInputChange,
-        onInputReset
+        onInputChangeSelect,
+        onInputReset,
+        onAddNewAttribute,
+        onDeleteAttribute
     }
 
 }

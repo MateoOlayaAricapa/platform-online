@@ -4,6 +4,8 @@ import iconClass from "./images/clases.png";
 import iconVideo from "./images/video.png";
 import iconImage from "./images/imagen.png";
 import iconArrowSelect from "./images/flecha_select.svg";
+import iconAdd from './images/agregar.png';
+import iconTrash from './images/basura.png';
 
 export { 
     iconTime, 
@@ -11,5 +13,7 @@ export {
     iconClass, 
     iconVideo,
     iconImage,
-    iconArrowSelect
+    iconArrowSelect,
+    iconAdd,
+    iconTrash
 };

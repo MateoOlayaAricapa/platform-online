@@ -1,0 +1,102 @@
+@import '../../../../../../styles/settings';
+
+.sectionLearning {
+    width: 100%;
+
+    @include displayFlex(
+        flex-start,
+        center,
+        column,
+        none,
+        1em
+    );
+
+    h2 {
+        font-size: 0.9em;
+        font-weight: 600;
+    }
+
+    &__textfield {
+        width: 100%;
+
+        @include displayFlex(
+            center,
+            center,
+            none,
+            none,
+            0.5em
+        );
+
+        button {
+            width: 3.5em;
+            height: 3.5em;
+            background-color: $color3;
+
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            @include displayFlex(
+                center,
+                center,
+                none,
+                none,
+                0
+            );
+
+            img {
+                width: 80%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    &__buttonAdd {
+        width: 100%;
+
+        @include displayFlex(
+            center,
+            flex-start,
+            none,
+            none,
+            0.5em
+        );
+
+        button {
+            width: 2.5em;
+            height: 2.5em;
+            border-radius: 50px;
+            border: none;
+            background-color: $color3;
+
+            cursor: pointer;
+
+            @include displayFlex(
+                center,
+                center,
+                none,
+                none,
+                0
+            );
+
+            img {
+                width: 100%;
+            }
+        }
+        
+        h3 {
+            font-size: 0.9em;
+            font-weight: 400;
+        }
+    }
+
+}
+
+.custom-textfield {
+    
+    div {
+        height: 3em;
+        border: 1px solid $color7;
+    }
+
+}
