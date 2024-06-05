@@ -25,7 +25,7 @@ export const Textfield = ( props: TextfieldProps ) => {
     return (
         <div className={ `textfield ${ className ? className : '' }` }>
 
-            <h1>{ title }</h1>
+            <h1 style={{ display: title ? 'inherit' : 'none' }}>{ title }</h1>
 
             <div>
 
