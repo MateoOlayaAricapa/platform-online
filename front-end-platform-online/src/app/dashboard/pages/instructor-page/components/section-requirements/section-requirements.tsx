@@ -30,7 +30,7 @@ export const SectionRequirements = () => {
 
             {
                 textfields.map(({ name, id }) => (
-                    <div className='sectionLearning__textfield'>
+                    <div className='sectionRequirements__textfield'>
 
                         <Textfield
                             key={ id }
