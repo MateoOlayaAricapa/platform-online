@@ -1,0 +1,121 @@
+@import '../../../../../../styles/settings';
+
+.containerModal {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.096);
+
+    @include displayFlex(
+        center,
+        center,
+        none,
+        none,
+        0
+    );
+
+    &__modal {
+        width: 46em;
+        padding: 1.5em;
+        box-sizing: border-box;
+        background-color: $color4;
+
+        border-radius: 10px;
+
+        @include displayFlex(
+            flex-start,
+            center,
+            column,
+            none,
+            1em
+        );
+
+        h3 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        &__titleTypeContent {
+            width: 100%;
+
+            @include displayFlex(
+                center,
+                center,
+                none,
+                none,
+                1em
+            );
+        }
+
+        &__video {
+            width: 100%;
+            height: 20em;
+            background-color: $color10;
+
+            border-radius: 10px;
+            overflow: hidden;
+
+            @include displayFlex(
+                center,
+                center,
+                none,
+                none,
+                0
+            );
+            
+            iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+            img {
+                width: 10%;
+                object-fit: cover;
+            }
+        }
+
+        &__buttons {
+            width: 100%;
+
+            @include displayFlex(
+                center,
+                flex-start,
+                none,
+                none,
+                1em
+            );
+
+            button {
+                padding: 1em 3.5em 1em 3.5em;
+                box-sizing: border-box;
+                background-color: $color3;
+
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+
+                font-size: 0.9em;
+                font-weight: 600;
+                color: $color4;
+            }
+
+            button:nth-of-type(2) {
+                background-color: transparent;
+                color: $color3;
+                border: 1px solid $color3;
+            }
+        }
+    }
+}
+
+.textfield-custom-modal {
+
+    div {
+        height: 3em;
+        border: 1px solid $color7;
+        border-radius: 10px;
+    }
+
+}

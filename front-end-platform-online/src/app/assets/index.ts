@@ -6,6 +6,8 @@ import iconImage from "./images/imagen.png";
 import iconArrowSelect from "./images/flecha_select.svg";
 import iconAdd from './images/agregar.png';
 import iconTrash from './images/basura.png';
+import iconIncorrect from './images/incorrecto.png';
+import iconCorrect from './images/correcto.png';
 
 export { 
     iconTime, 
@@ -15,5 +17,7 @@ export {
     iconImage,
     iconArrowSelect,
     iconAdd,
-    iconTrash
+    iconTrash,
+    iconCorrect,
+    iconIncorrect
 };

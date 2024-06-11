@@ -1,0 +1,113 @@
+@import '../../../../styles/settings';
+
+.sectionCourse {
+    width: 100%;
+    font-family: $main-font;
+
+    @include displayFlex(
+        center,
+        flex-start,
+        column,
+        none,
+        1.5em
+    );
+
+    &__createSection {
+        width: 100%;
+
+        @include displayFlex(
+            center,
+            center,
+            none,
+            none,
+            0.5em
+        );
+
+        button {
+            width: 30%;
+            height: 3.5em;
+            background-color: $color3;
+
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            font-family: $main-font;
+            font-weight: 600;
+            color: $color4;
+        }
+    }
+
+    &__containerSections {
+        width: 100%;
+
+        @include displayFlex(
+            center,
+            center,
+            column,
+            none,
+            0
+        );
+
+    }
+
+    &__containerSave {
+        width: 100%;
+
+        @include displayFlex(
+            center,
+            flex-start,
+            none,
+            none,
+            1em
+        );
+
+        button {
+            width: 10em;
+            height: 2.5em;
+            background-color: $color3;
+
+            cursor: pointer;
+
+            border: none;
+            border-radius: 5px;
+
+            font-size: 0.9em;
+            font-weight: 600;
+            color: $color4;
+        }
+
+        &__message {
+            width: 18em;
+
+            @include displayFlex(
+                center,
+                flex-start,
+                none,
+                none,
+                0.5em
+            );
+
+            img {
+                width: 7%;
+                object-fit: cover;
+            }
+
+            h4 {
+                margin: 0;
+                font-size: 0.9em;
+                color: $color13;
+            }
+
+        }
+    }
+}
+
+.custom-textfield {
+    
+    div {
+        height: 3em;
+        border: 1px solid $color7;
+    }
+
+}

@@ -1,0 +1,95 @@
+@import '../../../../../../styles/settings';
+
+.sectionContainer {
+    width: 100%;
+    
+    @include displayFlex(
+        center,
+        center,
+        column,
+        none,
+        0
+    );
+
+    &__section {
+        width: 100%;
+        height: 4.4em;
+        padding: 1em 1.5em 1em 1.5em;
+        box-sizing: border-box;
+        background-color: $color7;
+
+        @include displayFlex(
+            center,
+            space-between,
+            none,
+            none,
+            0
+        );
+
+        &__title {
+            cursor: pointer;
+
+            @include displayFlex(
+                center,
+                center,
+                none,
+                none,
+                1em
+            );
+
+            img {
+                width: 0.9em;
+            }
+
+            h1 {
+                font-size:1.3em;
+                font-weight: 600;
+                margin: 0;
+            }
+        }
+
+        &__buttons {
+
+            @include displayFlex(
+                center,
+                center,
+                none,
+                none,
+                0.5em
+            );
+
+            button {
+                width: 2.4em;
+                height: 2.4em;
+                background-color: $color3;
+                
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+    
+                font-family: $main-font;
+                font-weight: 600;
+                color: $color4;
+
+                @include displayFlex(
+                    center,
+                    center,
+                    none,
+                    none,
+                    0
+                );
+
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+
+        }
+    }
+
+}
+
+.iconRotate {
+    transition: transform 0.15s ease-in-out;
+}
