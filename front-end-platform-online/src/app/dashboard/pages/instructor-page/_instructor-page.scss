@@ -15,14 +15,14 @@
 
     &__container {
         width: 100%;
-        max-width: 80em;
+        max-width: 82em;
 
         @include displayFlex(
             flex-start,
             center,
             none,
             none,
-            0
+            3em
         );
 
         &__createCourse {
@@ -92,18 +92,143 @@
                         );
 
                         img {
-                            width: 10%;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+
+                        iframe {
+                            width: 100%;
+                            height: 100%;
+
+                            border: none;
                             object-fit: cover;
                         }
                     }
                 }
 
+                &__createSections {
+                    width: 100%;
+
+                    @include displayFlex(
+                        flex-start,
+                        center,
+                        column,
+                        none,
+                        0.5em
+                    );
+
+                    h1 {
+                        font-size: 0.9em;
+                        font-weight: 600
+                    }
+                }
+
+            }
+
+            &__settings {
+                width: 100%;
+
+                @include displayFlex(
+                    flex-start,
+                    center,
+                    column,
+                    none,
+                    1em
+                );
+
+                h1 {
+                    font-size: 0.9em;
+                    font-weight: 600;
+                }
+
+                &__buttons {
+                    width: 100%;
+
+                    @include displayFlex(
+                        center,
+                        flex-start,
+                        none,
+                        none,
+                        1em
+                    );
+
+                    button {
+                        width: 12em;
+                        height: 3em;
+                        background-color: #674EFF;
+                        
+                        border: none;
+                        border-radius: 5px;
+                        
+                        cursor: pointer;
+                        
+                        font-family: $main-font;
+                        font-size: 1em;
+                        font-weight: 500;
+                        color: #FFFFFF;
+                    }
+
+                    button:nth-of-type(2) {
+                        background-color: transparent;
+                        color: $color3;
+                        
+                        border: 1px solid $color3;
+                    }
+                }
             }
         }
 
         &__publishCourses {
             width: 35%;
-            background-color: blue;
+            height: 45em;
+            padding: 1em;
+            box-sizing: border-box;
+
+            border: 1px solid $color7;
+            border-radius: 10px;
+
+            @include displayFlex(
+                flex-start,
+                flex-start,
+                column,
+                none,
+                1em
+            );
+
+            h1 {
+                margin: 0;
+                font-size: 1.3em;
+                font-weight: 600;
+            }
+
+            &__courses {
+                width: 100%;
+                height: 100%;
+
+                overflow-y: auto;
+
+                @include displayFlex(
+                    center,
+                    flex-start,
+                    column,
+                    none,
+                    1em
+                );
+
+                &::-webkit-scrollbar {
+                    width: 7px;
+                }
+                
+                &::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                
+                &::-webkit-scrollbar-thumb {
+                    background: $color3;
+                    border-radius: 10px;
+                }
+            }
         }
     }
 }

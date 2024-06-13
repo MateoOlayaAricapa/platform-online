@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { useCounter } from "../../../../../../hooks/useCounter";
 import { useForm } from "../../../../../../hooks/useForm";
 import { useTextfieldsDynamics } from "../../../../../../hooks/useTextfieldsDynamics";
+import { OnChangeRequirements } from "./section-requirements";
 
 interface FormRequirements {
     requirementPoint1: string;
@@ -12,7 +14,11 @@ interface TextfieldRequirements {
     name: string;
 }
 
-export const useSectionRequirements = () => {
+interface UseSectionRequirementsParams {
+    onChange?: ( args: OnChangeRequirements ) => void;
+}
+
+export const useSectionRequirements = ( { onChange }: UseSectionRequirementsParams ) => {
 
     //* Attributes.
     const { onAddNewAttribute, onDeleteAttribute, onInputChange, stateForm } = useForm<FormRequirements>({
@@ -42,6 +48,13 @@ export const useSectionRequirements = () => {
         onDeleteTextfield( id );
     }
 
+    //* useEffect.
+    useEffect(() => {
+
+        onChange && onChange( stateForm );
+
+    }, [ stateForm ]);
+    
     return {
         //* Attributes.
         stateForm,

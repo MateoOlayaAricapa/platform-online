@@ -1,11 +1,16 @@
+import { iconAdd, iconTrash } from '../../../../../assets';
 import './_section-requirements.scss';
 
 import { Textfield } from '../../../../../../components';
 import { useSectionRequirements } from './useSectionRequirements';
 
-import { iconAdd, iconTrash } from '../../../../../assets';
+export type OnChangeRequirements = { [key: string]: any };
 
-export const SectionRequirements = () => {
+interface SectionRequirementsProps {
+    onChange?: ( args: OnChangeRequirements ) => void;
+}
+
+export const SectionRequirements = ( { onChange }: SectionRequirementsProps ) => {
     
     const { 
         onHandleCreateRequirements, 
@@ -13,7 +18,7 @@ export const SectionRequirements = () => {
         onInputChange, 
         stateForm, 
         textfields
-    } = useSectionRequirements();
+    } = useSectionRequirements({ onChange });
 
     return (
         <div className='sectionRequirements'>

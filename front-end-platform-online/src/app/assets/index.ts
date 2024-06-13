@@ -8,6 +8,8 @@ import iconAdd from './images/agregar.png';
 import iconTrash from './images/basura.png';
 import iconIncorrect from './images/incorrecto.png';
 import iconCorrect from './images/correcto.png';
+import iconImageInstructor from './images/IconImage.png';
+import iconVideoInstructor from './images/IconVideo.png'
 
 export { 
     iconTime, 
@@ -19,5 +21,7 @@ export {
     iconAdd,
     iconTrash,
     iconCorrect,
-    iconIncorrect
+    iconIncorrect,
+    iconImageInstructor,
+    iconVideoInstructor
 };

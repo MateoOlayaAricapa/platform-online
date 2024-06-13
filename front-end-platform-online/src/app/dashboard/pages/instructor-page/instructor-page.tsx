@@ -1,12 +1,15 @@
+import { iconImageInstructor, iconVideoInstructor } from '../../../assets';
 import './_instructor-page.scss';
 
 import { Textfield, Select } from '../../../../components';
 
-import { iconVideo, iconImage } from '../../../assets';
 import { Option } from '../../../../components/select/option';
 import { useInstructor } from './useInstructorPage';
 import { SectionLearning } from './components/section-learning/section-learning';
 import { SectionRequirements } from './components/section-requirements/section-requirements';
+import { SectionCourse } from '../../components/section-course/section-course';
+import { ValidationIframe } from '../../../../helpers/validation-iframe';
+import { CardCourse } from '../../components/card-course/card-course';
 
 export const InstructorPage = () => {
 
@@ -14,6 +17,8 @@ export const InstructorPage = () => {
         stateForm,
         onInputChange,
         onInputChangeSelect, 
+        onHandleCreateCurse,
+        onChangeSections
     } = useInstructor();
 
     return (
@@ -63,7 +68,11 @@ export const InstructorPage = () => {
                             />
 
                             <div className='instructorPage__container__createCourse__data__videoImage__content'>
-                                <img src={ iconVideo } alt="" />
+                                {
+                                    ( stateForm.videoUrl.length !== 0 && ValidationIframe.isValidUrl( stateForm.videoUrl ) )
+                                     ? <iframe src={ stateForm.videoUrl }/>
+                                     : <img src={ iconVideoInstructor } alt="" />
+                                }
                             </div>
 
                         </div>
@@ -82,7 +91,10 @@ export const InstructorPage = () => {
                             />
 
                             <div className='instructorPage__container__createCourse__data__videoImage__content'>
-                                <img src={ iconImage } alt="" />
+                                <img 
+                                    src={ stateForm.imageUrl ? stateForm.imageUrl : iconImageInstructor } 
+                                    alt="" 
+                                />
                             </div>
 
                         </div>
@@ -126,18 +138,55 @@ export const InstructorPage = () => {
                         </Select>
 
                         { /* Componente sección puntos de aprendizaje */ }
-                        <SectionLearning/>
+                        <SectionLearning onChange={ onChangeSections }/>
 
                         { /* Componente sección requisitos estudios */ }
-                        <SectionRequirements/>
+                        <SectionRequirements onChange={ onChangeSections }/>
+
+                        { /* Componente sección para agregas secciones con sus clases */ }
+                        <div className='instructorPage__container__createCourse__data__createSections'>
+
+                            <h1>Secciones</h1>
+                            <SectionCourse 
+                                typeOfUse='create'
+                                onChange={ onChangeSections }
+                            />
+
+                        </div>
                     
+                    </div>
+
+                    { /* Div que tiene el botón para crear el curso */ }
+                    <div className='instructorPage__container__createCourse__settings'>
+
+                        <h1>Configuraciones</h1>
+
+                        <div className='instructorPage__container__createCourse__settings__buttons'>
+
+                            <button type='button' onClick={ onHandleCreateCurse }>
+                                Crear curso
+                            </button>
+
+                            <button type='button'>
+                                Cancelar
+                            </button>
+
+                        </div>
+
                     </div>
 
                 </div>
 
                 { /* Div que la tabla donde se muestra los cursos publicados por el instructor */ }
                 <div className='instructorPage__container__publishCourses'>
-                    hola
+
+                    <h1>Tus cursos publicados</h1>
+                    <div className='instructorPage__container__publishCourses__courses'>
+
+                        <CardCourse type='small'/>
+
+                    </div>
+
                 </div>
 
             </div>

@@ -1,6 +1,8 @@
 import { useCounter } from "../../../../../../hooks/useCounter";
 import { useForm } from "../../../../../../hooks/useForm";
 import { useTextfieldsDynamics } from "../../../../../../hooks/useTextfieldsDynamics";
+import { useEffect } from 'react';
+import { OnChangeLearning } from "./section-learning";
 
 interface FormLearning {
     [ key: string ]: string;
@@ -12,10 +14,14 @@ interface TextfieldLearning {
     value: string;
 }
 
-export const useSectionLearning = () => {
+interface UseSectionLearningParams {
+    onChange?: ( args: OnChangeLearning ) => void;
+}
+
+export const useSectionLearning = ( { onChange }: UseSectionLearningParams ) => {
 
     //* Attributes.
-    const { onInputChange, stateForm, onAddNewAttribute, onDeleteAttribute } = useForm<FormLearning>({
+    const { stateForm, onInputChange, onAddNewAttribute, onDeleteAttribute } = useForm<FormLearning>({
         learningPoint1: ''
     });
 
@@ -44,6 +50,13 @@ export const useSectionLearning = () => {
 
     }
 
+    //* useEffect
+    useEffect(() => {
+
+        onChange && onChange( stateForm );
+
+    }, [ stateForm ]);
+    
     return {
         //* Attributes.
         stateForm,

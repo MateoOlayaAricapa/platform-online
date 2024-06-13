@@ -4,7 +4,13 @@ import { useSectionLearning } from './useSectionLearning';
 import { iconAdd, iconTrash } from '../../../../../assets';
 import './_section-learning.scss';
 
-export const SectionLearning = () => {
+export type OnChangeLearning = { [key: string]: any };
+
+interface SectionLearningProps {
+    onChange?: ( args: OnChangeLearning ) => void;
+}
+
+export const SectionLearning = ( { onChange }: SectionLearningProps ) => {
 
     const { 
         onHandleCreateLearnings, 
@@ -12,7 +18,7 @@ export const SectionLearning = () => {
         onInputChange, 
         stateForm,
         textfields 
-    } = useSectionLearning();
+    } = useSectionLearning({ onChange });
 
     return (
         <div className='sectionLearning'>

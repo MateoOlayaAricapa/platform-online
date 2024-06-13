@@ -15,10 +15,15 @@ export const useForm = <T>( initialStateForm: T ) => {
         setStateForm({ ...stateForm, [name]: value });
     }
 
+    const onChangeForm = ( { name, value }: { value: any; name: string } ): void => {
+        setStateForm({ ...stateForm, [name]: value });
+    }
+
     const onInputReset = (): void => {
         setStateForm({ ...initialStateForm });
     }
 
+    //* Other functions
     const onAddNewAttribute = ( name: string, value: string ): void => {
         setStateForm({ ...stateForm, [name]: value });
     }
@@ -36,6 +41,7 @@ export const useForm = <T>( initialStateForm: T ) => {
         
         //* Methods.
         onInputChange,
+        onChangeForm,
         onInputChangeSelect,
         onInputReset,
         onAddNewAttribute,
