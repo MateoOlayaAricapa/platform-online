@@ -10,15 +10,18 @@ import { SectionRequirements } from './components/section-requirements/section-r
 import { SectionCourse } from '../../components/section-course/section-course';
 import { ValidationIframe } from '../../../../helpers/validation-iframe';
 import { CardCourse } from '../../components/card-course/card-course';
+import { ModalMessage } from '../../components';
 
 export const InstructorPage = () => {
 
     const { 
         stateForm,
+        dataModal,
         onInputChange,
         onInputChangeSelect, 
         onHandleCreateCurse,
-        onChangeSections
+        onChangeSections,
+        onClosedModal
     } = useInstructor();
 
     return (
@@ -188,6 +191,18 @@ export const InstructorPage = () => {
                     </div>
 
                 </div>
+
+                { /* Componente que tiene la modal que muestra un mensaje */ }
+                {
+                    ( dataModal.isOpen ) && (
+                        <ModalMessage 
+                            type={ dataModal.type }
+                            title={ dataModal.title }
+                            message={ dataModal.message }
+                            onClosed={ onClosedModal }
+                        />
+                    )
+                }
 
             </div>
 

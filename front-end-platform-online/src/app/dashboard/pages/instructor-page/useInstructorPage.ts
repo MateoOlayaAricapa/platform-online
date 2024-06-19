@@ -1,5 +1,7 @@
 import { useForm } from "../../../../hooks/useForm";
 import { SectionsCourse } from "../../components/section-course/interface/interface";
+import { ValidatedValueTexfield } from "../../../../helpers/validated-textfield";
+import { useModal } from "../../../../hooks/useModal";
 
 interface Curse {
     title       : string;
@@ -28,9 +30,33 @@ export const useInstructor = () => {
         sections: []
     });
 
+    const { dataModal, onClosedModal, onTypeShowModal } = useModal();
+
     //* Methods.
     const onHandleCreateCurse = (): void => {
-       console.log( stateForm );
+       
+        const { status, errorMessage } = ValidatedValueTexfield.isValidated( stateForm );
+
+        if ( !status ) {
+        
+            onTypeShowModal({ 
+                type: 'problem',
+                isOpen: true,
+                title: 'Datos vacíos',
+                message: errorMessage!  
+            });
+
+            return;
+        
+        }
+
+        onTypeShowModal({ 
+            type: 'success',
+            isOpen: true,
+            title: 'Guardado!',
+            message: "Los datos fueron guardados"
+        });
+
     }
 
     const onChangeSections = ( value: SectionsCourse[] | { [key: string]: any } ): void => {
@@ -58,12 +84,14 @@ export const useInstructor = () => {
     return {
         //* Attributes.
         stateForm,
+        dataModal,
 
         //* Methods.
         onInputChange,
         onInputChangeSelect,
         onHandleCreateCurse,
-        onChangeSections
+        onChangeSections,
+        onClosedModal
     }
 
 }
