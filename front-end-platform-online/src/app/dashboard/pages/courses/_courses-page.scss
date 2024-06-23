@@ -1,0 +1,47 @@
+@import '../../../../styles/settings';
+
+.coursesPage {
+    width: 100%;
+    padding: 2em;
+    box-sizing: border-box;
+
+    font-family: $main-font;
+
+    @include displayFlex(
+        center,
+        center,
+        none,
+        none,
+        0
+    );
+
+    &__container {
+        width: 100%;
+        max-width: 80em;
+
+        @include displayFlex(
+            flex-start,
+            center,
+            column,
+            none,
+            1em
+        );
+
+        h1 {
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+
+        &__sectionCourses {
+            width: 100%;
+
+            @include displayFlex(
+                flex-start,
+                center,
+                none,
+                wrap,
+                1.5em
+            );
+        }
+    }
+}
