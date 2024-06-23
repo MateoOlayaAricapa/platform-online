@@ -1,20 +1,22 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-
-import { HomePage } from "../pages/home/home-page";
-import { InstructorPage } from "../pages/instructor-page/instructor-page";
-import { CoursesPage } from "../pages/courses/courses-page";
+import { routesDashboard } from "./lazyLoad-routes";
 
 export const DashboardRoutes = () => {
 
     return (
         <Routes>
 
-            <Route path="/home" element={ <HomePage/> }/>
-            <Route path="/my-courses" element={ <CoursesPage/> }/>
-            <Route path="/instructor" element={ <InstructorPage/> }/>
-            <Route path="/community" element={ <h1>Community page</h1> }/>
+            {
+                routesDashboard.map(({ Component, path, id }) => (
+                    <Route
+                        key={ id } 
+                        path={ path } 
+                        element={ <Component/> }
+                    />
+                ))
+            }
 
-            <Route path="/*" element={ <Navigate to='/home'/> }/>
+            <Route path="/*" element={ <Navigate to={ routesDashboard[0].path } replace/> }/>
             
         </Routes>
     );

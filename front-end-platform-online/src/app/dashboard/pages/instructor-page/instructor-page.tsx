@@ -210,3 +210,5 @@ export const InstructorPage = () => {
     );
 
 }
+
+export default InstructorPage;

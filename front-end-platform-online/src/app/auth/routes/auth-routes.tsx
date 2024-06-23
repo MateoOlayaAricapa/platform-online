@@ -1,16 +1,21 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-
-import { LoginPage } from "../pages/login/login-page";
-import { RegisterPage } from "../pages/register/register-page";
+import { routesAuth } from "./lazyLoad-auth-routes";
 
 export const AuthRoutes = () => {
 
     return (
         <Routes>
-            <Route path="/login" element={ <LoginPage/> }/>
-            <Route path="/register" element={ <RegisterPage/> }/>
+            {
+                routesAuth.map(({ Component, id, path }) => (
+                    <Route 
+                        id={ id }
+                        path={ path }
+                        element={ <Component/> }
+                    />
+                ))
+            }
 
-            <Route path="/*" element={ <Navigate to='/login'/> }/>
+            <Route path="/*" element={ <Navigate to={ routesAuth[0].path } replace/> }/>
         </Routes>
     );
 
