@@ -7,13 +7,13 @@ import closedEyes from '../../app/assets/images/esconder.png';
 import openEyes from '../../app/assets/images/ver.png';
 
 interface TextfieldProps {
-    type        : 'password' | 'text' | 'checkbox' | 'email';
+    type        : 'password' | 'text' | 'checkbox' | 'email' | 'textArea';
     title?      : string;
-    className?  : string;
+    className?  : string | 'textfield-custom-textarea' | 'textfield-custom';
     value?      : string;
     name?       : string;
     placeHolder?: string;
-    onChange?   : ChangeEventHandler<HTMLInputElement>;
+    onChange?   : ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 export const Textfield = ( props: TextfieldProps ) => {
@@ -25,17 +25,30 @@ export const Textfield = ( props: TextfieldProps ) => {
     return (
         <div className={ `textfield ${ className ? className : '' }` }>
 
-            <h1>{ title }</h1>
+            <h1 style={{ display: title ? 'inherit' : 'none' }}>{ title }</h1>
 
             <div>
 
-                <input 
-                    type={ typeInput }
-                    value={ value }
-                    placeholder={ placeHolder }
-                    onChange={ onChange } 
-                    name={ name } 
-                />
+                {
+                    ( type === 'textArea' ) 
+                    ? (
+                        <textarea
+                            value={ value }
+                            placeholder={ placeHolder }
+                            onChange={ onChange } 
+                            name={ name }
+                        />
+                    )  
+                    : (
+                        <input 
+                            type={ typeInput }
+                            value={ value }
+                            placeholder={ placeHolder }
+                            onChange={ onChange } 
+                            name={ name } 
+                        />
+                    )
+                }
 
                 {
                     ( type === 'password' ) && (

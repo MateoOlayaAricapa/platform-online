@@ -1,0 +1,83 @@
+@import '../../../../../../styles/settings';
+
+.classCourse {
+    width: 100%;
+    height: 4.4em;
+    padding: 1em 1.5em 1em 1.5em;
+    box-sizing: border-box;
+
+    border-bottom: 1px solid $color7;
+    border-left: 1px solid $color7;
+    border-right: 1px solid $color7;
+
+    @include displayFlex(
+        center,
+        space-between,
+        none,
+        none,
+        0
+    );
+
+    &__imagenTitle {
+
+        @include displayFlex(
+            center,
+            center,
+            none,
+            none,
+            1em
+        );
+
+        &__imagen {
+            width: 2.2em;
+            height: 2.2em;
+            padding: 0.5em;
+            box-sizing: border-box;
+            background-color: $color10;
+            
+            border-radius: 5px;
+
+            @include displayFlex(
+                center,
+                center,
+                none,
+                none,
+                0
+            );
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        h2 {
+            font-size: 0.938em;
+            font-weight: 500;
+        }
+
+    }
+
+    button {
+        width: 2.5em;
+        height: 2.5em;
+        background-color: $color3;
+        
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        @include displayFlex(
+            center,
+            center,
+            none,
+            none,
+            0
+        );
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}

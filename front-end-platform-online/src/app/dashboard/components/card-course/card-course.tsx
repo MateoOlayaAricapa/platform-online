@@ -1,7 +1,7 @@
 import { useCardCourse } from './useCardCourse';
-import './_card-course.scss';
 
 import { iconTime, iconClass, iconSections } from '../../../assets';
+import './_card-course.scss';
 
 interface CardCourseProps {
     type: 'complete' | 'small' | 'progress';
@@ -32,7 +32,7 @@ export const CardCourse = ( { type }: CardCourseProps ) => {
 
                 { !isSmallCard && <div className='divisor'/> }
                 { isCompleteCard && <CardDetails/> }
-                { isProgressCard && <CardProgress/> }
+                { isProgressCard && <CardProgress progress={ 80 }/> }
 
             </div>
 
@@ -40,6 +40,9 @@ export const CardCourse = ( { type }: CardCourseProps ) => {
     );
 
 }
+
+
+//* Subcomponents
 
 const CardDetails = () => (
     <div className='cardCourse__information__details'>
@@ -62,8 +65,15 @@ const CardDetails = () => (
     </div>
 );
 
-const CardProgress = () => (
-    <h4>Barra progreso</h4>
+const CardProgress = ( { progress }: { progress: number } ) => (
+    <div className='cardCourseType__information__progress'>
+
+        <h4>{`${ progress }% completado`}</h4>
+        <div className='cardCourseType__information__progress__container'>
+            <div style={{ width: `${ progress }%` }} className='cardCourseType__information__progress__container__bar'/>
+        </div>
+
+    </div>
 );
 
 const CardDescription = () => (

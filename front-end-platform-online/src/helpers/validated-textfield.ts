@@ -12,6 +12,7 @@ export class ValidatedValueTexfield {
         for ( const key of attributesOfObject ) {
            
             if ( stateForm[ key ] === '' ) return { errorMessage: `field [ ${ key } ] empty`, status: false };
+            if ( stateForm[ key ].length === 0 ) return { status: false, errorMessage: `field [ ${ key } ] empty` };
 
         }
 
