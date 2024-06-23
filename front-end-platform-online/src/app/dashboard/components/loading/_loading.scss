@@ -1,0 +1,23 @@
+@import '../../../../styles/settings';
+
+.loading {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+
+    font-family: $main-font;
+
+    @include displayFlex(
+        center,
+        center,
+        none,
+        none,
+        0
+    );
+
+    span {
+        font-size: 2em;
+        font-weight: 600;
+    }
+    
+}
