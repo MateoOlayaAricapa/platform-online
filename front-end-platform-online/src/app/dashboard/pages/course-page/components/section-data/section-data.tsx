@@ -14,8 +14,8 @@ interface Data {
 }
 
 interface SectionDataProps {
-    data     : Data;
-    className: string;
+    data      : Data;
+    className?: string;
 }
 
 export const SectionData = ( { data, className }: SectionDataProps ) => {
