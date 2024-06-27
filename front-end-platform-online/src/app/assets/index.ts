@@ -10,6 +10,8 @@ import iconIncorrect from './images/incorrecto.png';
 import iconCorrect from './images/correcto.png';
 import iconImageInstructor from './images/IconImage.png';
 import iconVideoInstructor from './images/IconVideo.png'
+import iconCalendar from './images/calendario.png';
+import iconLanguage from './images/comunidad.png';
 
 export { 
     iconTime, 
@@ -23,5 +25,7 @@ export {
     iconCorrect,
     iconIncorrect,
     iconImageInstructor,
-    iconVideoInstructor
+    iconVideoInstructor,
+    iconCalendar,
+    iconLanguage
 };

@@ -1,0 +1,84 @@
+@import '../../../../../../styles/settings';
+
+.sectionData {
+    width: 100%;
+    height: auto;
+    padding: 1em;
+    box-sizing: border-box;
+
+    border: 1px solid $color7;
+    border-radius: 10px;
+
+    font-family: $main-font;
+
+    @include displayFlex(
+        flex-start,
+        center,
+        column,
+        none,
+        1.5em
+    );
+
+    h1 {
+        margin: 0;
+        font-size: 1.5em;
+        font-weight: 600;
+    }
+
+    h1:nth-of-type(2) {
+        font-size: 1em;
+    }
+
+    h1:nth-of-type(3) {
+        font-size: 1em;
+    }
+
+    &__item {
+        width: 100%;
+
+        @include displayFlex(
+            center,
+            flex-start,
+            none,
+            none,
+            0.5em
+        );
+
+        img {
+            width: 5%;
+        }
+
+        p {
+            margin: 0;
+            font-size: 1em;
+            font-weight: 600;
+            color: $color6;
+        }
+    }
+
+    &__topics {
+        width: 100%;
+
+        @include displayFlex(
+            center,
+            flex-start,
+            none,
+            wrap,
+            0.5em
+        );
+
+        &__container {
+            background-color: $color10;
+            padding: 0.5em 1.5em 0.5em 1.5em;
+            box-sizing: border-box;
+
+            border-radius: 5px;
+
+            h2 {
+                margin: 0;
+                font-size: 1em;
+                color: $color3;
+            }
+        }
+    }
+}
