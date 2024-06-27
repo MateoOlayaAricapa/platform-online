@@ -1,0 +1,82 @@
+@import '../../../../../../styles/settings';
+
+.sectionInstructor {
+    width: 100%;
+    height: auto;
+    padding: 1em;
+    box-sizing: border-box;
+
+    border: 1px solid $color7;
+    border-radius: 10px;
+
+    font-family: $main-font;
+
+    @include displayFlex(
+        flex-start,
+        center,
+        column,
+        none,
+        1.5em
+    );
+
+    h1 {
+        margin: 0;
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+
+    &__perfil {
+        width: 100%;
+
+        @include displayFlex(
+            center,
+            flex-start,
+            none,
+            none,
+            0.5em
+        );
+
+        &__photo {
+            width: 2.8em;
+            height: 2.8em;
+            background-color: $color14;
+            
+            border: 3px solid $color3;
+            border-radius: 50px;
+
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &__titles {
+            
+            h2 {
+                margin: 0;
+                font-size: 1em;
+                font-weight: 500;
+            }
+
+            h2:nth-of-type(2) {
+                color: $color6;
+            }
+
+        }
+    }
+
+    &__description {
+        width: 100%;
+
+        p {
+            margin: 0;
+
+            font-size: 1em;
+            font-weight: 500;
+            color: $color1;
+            line-height: 1.4em;
+        }
+    }
+}
