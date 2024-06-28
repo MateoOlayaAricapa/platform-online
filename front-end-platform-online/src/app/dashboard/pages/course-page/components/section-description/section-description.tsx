@@ -9,15 +9,16 @@ interface Data {
 }
 
 interface SectionDescriptionProps {
-    data: Data;
+    data        : Data;
+    className?  : string;
 }
 
-export const SectionDescription = ( { data }: SectionDescriptionProps ) => {
+export const SectionDescription = ( { data, className }: SectionDescriptionProps ) => {
 
     const { description, name, photo, urlVideo } = data;
 
     return (
-        <div className='sectionDescription'>
+        <div className={`sectionDescription ${ className ? className : '' }`}>
 
             <div className='sectionDescription__buttonBack'>
                 <button>
