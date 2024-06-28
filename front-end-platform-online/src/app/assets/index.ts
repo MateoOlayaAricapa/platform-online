@@ -12,6 +12,7 @@ import iconImageInstructor from './images/IconImage.png';
 import iconVideoInstructor from './images/IconVideo.png'
 import iconCalendar from './images/calendario.png';
 import iconLanguage from './images/comunidad.png';
+import iconArrow from './images/flecha.png';
 
 export { 
     iconTime, 
@@ -27,5 +28,6 @@ export {
     iconImageInstructor,
     iconVideoInstructor,
     iconCalendar,
-    iconLanguage
+    iconLanguage,
+    iconArrow
 };
