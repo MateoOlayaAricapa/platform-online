@@ -1,16 +1,17 @@
 import { CardCourse } from '../../components/card-course/card-course';
+import { LayoutPagesMenu } from '../../layout/layout-pages-menu';
 import './_courses-page.scss';
 
 export const CoursesPage = () => {
 
     return (
-        <div className='coursesPage'>
+        <LayoutPagesMenu>
 
-            <div className='coursesPage__container'>
+            <div className='coursesPage width-container'>
                 
                 <h1>Tus cursos</h1>
 
-                <div className='coursesPage__container__sectionCourses'>
+                <div className='coursesPage__sectionCourses'>
 
                     <CardCourse type='progress'/>
                     <CardCourse type='progress'/>
@@ -23,7 +24,7 @@ export const CoursesPage = () => {
 
             </div>
 
-        </div>
+        </LayoutPagesMenu>
     );
 
 }

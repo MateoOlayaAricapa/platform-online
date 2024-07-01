@@ -1,0 +1,13 @@
+.layoutPagesMenu {
+    width: 100%;
+    padding: 2em;
+    box-sizing: border-box;
+
+    @include displayFlex(
+        center,
+        center,
+        none,
+        none,
+        0
+    );
+}
