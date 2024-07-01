@@ -1,0 +1,53 @@
+@import '../../../../styles/settings';
+
+.coursePage {
+    width: 100%;
+    padding: 2em;
+    box-sizing: border-box;
+
+    @include displayFlex(
+        center,
+        center,
+        none,
+        none,
+        0
+    );
+
+    &__container {
+        width: 100%;
+        max-width: 82em;
+
+        @include displayFlex(
+            flex-start,
+            center,
+            none,
+            none,
+            2em
+        );
+
+        &__firstSection {
+            width: 55%;
+
+            @include displayFlex(
+                center,
+                center,
+                column,
+                none,
+                2em
+            );
+        }
+
+        &__secondSection {
+            width: 30%;
+
+            @include displayFlex(
+                center,
+                center,
+                column,
+                none,
+                2em
+            );
+        }
+
+    }
+}

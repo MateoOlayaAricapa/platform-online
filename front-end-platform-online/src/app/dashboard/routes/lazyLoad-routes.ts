@@ -12,7 +12,8 @@ interface RoutesDashboard {
 //* Aplicando lazy load para cada página del dashboard
 const homePageLazy = lazy( () => import('../pages/home-page/home-page') );
 const instructorPageLazy = lazy( () => import('../pages/instructor-page/instructor-page') );
-const coursesPageLazy = lazy( () => import('../pages/courses-page/courses-page') );
+const myCoursesPageLazy = lazy( () => import('../pages/my-courses-page/courses-page') );
+const coursePageLazy = lazy( () => import('../pages/course-page/couser-page') );
 
 export const routesDashboard: RoutesDashboard[] = [
     {
@@ -27,7 +28,12 @@ export const routesDashboard: RoutesDashboard[] = [
     },
     {
         path: '/my-courses',
-        Component: coursesPageLazy,
+        Component: myCoursesPageLazy,
+        id: Uuid.v4()
+    },
+    {
+        path: '/course',
+        Component: coursePageLazy,
         id: Uuid.v4()
     }
 ];

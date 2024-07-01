@@ -1,0 +1,20 @@
+@import '../../../../../../styles/settings';
+
+.sectionContent {
+    width: 100%;
+    height: auto;
+
+    @include displayFlex(
+        flex-start,
+        center,
+        column,
+        none,
+        1em
+    );
+
+    h1 {
+        font-size: 1.2em;
+        font-weight: 600;
+        color: $color1;
+    }
+}

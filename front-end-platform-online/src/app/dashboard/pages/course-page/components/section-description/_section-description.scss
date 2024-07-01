@@ -1,0 +1,147 @@
+@import '../../../../../../styles/settings';
+
+.sectionDescription {
+    width: 100%;
+    height: auto;
+
+    font-family: $main-font;
+
+    @include displayFlex(
+        center,
+        center,
+        column,
+        none,
+        1.5em
+    );
+
+    &__buttonBack {
+        width: 100%;
+
+        button {
+            width: 7em;
+            
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+
+            font-family: $main-font;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: $color1;
+            
+            img {
+              width: 10%;
+              transform: rotate(90deg);
+            }
+
+            @include displayFlex(
+                center,
+                center,
+                none,
+                none,
+                0.5em
+            );
+
+        }
+    }
+
+    &__video {
+        width: 100%;
+        height: 30em;
+
+        border-radius: 10px;
+        overflow: hidden;
+
+        @include displayFlex(
+            center,
+            center,
+            none,
+            none,
+            0
+        );
+
+        iframe {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            border: none;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__instructor {
+        width: 100%;
+
+        @include displayFlex(
+            center,
+            flex-start,
+            none,
+            none,
+            0.5em
+        );
+
+        &__photo {
+            width: 2.8em;
+            height: 2.8em;
+            background-color: $color14;
+            
+            border: 3px solid $color3;
+            border-radius: 50px;
+
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &__titles {
+            h2 {
+                margin: 0;
+                font-size: 1em;
+                font-weight: 500;
+            }
+
+            h2:nth-of-type(2) {
+                color: $color6;
+            }
+        }
+    }
+
+    &__descriptionCourse {
+        width: 100%;
+        height: auto;
+
+        @include displayFlex(
+            flex-start,
+            center,
+            column,
+            none,
+            0.5em
+        );
+
+        h1 {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: $color1;
+
+            margin: 0;
+        }
+
+        p {
+            font-size: 1em;
+            font-weight: 400;
+            color: $color1;
+
+            margin: 0;
+            line-height: 1.4em;
+        }
+    }
+}

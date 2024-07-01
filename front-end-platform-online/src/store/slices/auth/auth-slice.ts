@@ -7,7 +7,7 @@ interface InitialState {
 };
 
 const initialState: InitialState = {
-    status: 'no-authenticated',
+    status: 'authenticated',
     user: {},
     isLoadingAuth: undefined,
 };

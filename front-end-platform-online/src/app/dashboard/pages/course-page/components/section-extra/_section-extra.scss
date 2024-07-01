@@ -1,0 +1,49 @@
+@import '../../../../../../styles/settings';
+
+.sectionExtra {
+    width: 100%;
+    height: auto;
+
+    font-family: $main-font;
+    
+    @include displayFlex(
+        flex-start,
+        center,
+        column,
+        none,
+        1em
+    );
+
+    h1 {
+        margin: 0;
+        font-size: 1.2em;
+        font-weight: 600;
+        color: $color1;
+    }
+
+    &__content {
+        width: 100%;
+        height: auto;
+        padding: 1.5em;
+        box-sizing: border-box;
+
+        border: 1px solid $color7;
+        border-radius: 10px;
+
+        @include displayFlex(
+            center,
+            center,
+            none,
+            wrap,
+            1em
+        );
+
+        li {
+            font-size: 1em;
+        }
+
+        li::marker {
+            color: $color3;
+        }
+    }
+}
