@@ -1,7 +1,7 @@
 @import '../../../../../../styles/settings';
 
 .sectionDescription {
-    width: 45em;
+    width: 100%;
     height: auto;
 
     font-family: $main-font;
@@ -137,7 +137,7 @@
 
         p {
             font-size: 1em;
-            font-weight: 500;
+            font-weight: 400;
             color: $color1;
 
             margin: 0;
