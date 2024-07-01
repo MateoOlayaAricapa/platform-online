@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { SectionInstructor } from '../app/dashboard/pages/course-page/components';
 
 const meta = {
-    title: 'COMPONENTS/SectionInstructorCourse',
+    title: 'COURSE-PAGE/SectionInstructorCourse',
     component: SectionInstructor,
     parameters: {
         layout: 'centered'
