@@ -11,6 +11,7 @@ import { SectionCourse } from '../../components/section-course/section-course';
 import { ValidationIframe } from '../../../../helpers/validation-iframe';
 import { CardCourse } from '../../components/card-course/card-course';
 import { ModalMessage } from '../../components';
+import { LayoutPagesMenu } from '../../layout/layout-pages-menu';
 
 export const InstructorPage = () => {
 
@@ -25,16 +26,16 @@ export const InstructorPage = () => {
     } = useInstructor();
 
     return (
-        <div className='instructorPage'>
+        <LayoutPagesMenu>
 
             { /* Div que contiene todo el contenido HTML */ }
-            <div className='instructorPage__container'>
+            <div className='instructorPage width-container'>
                 
                 { /* Div que contiene todos los campos para crear un curso */ }
-                <div className='instructorPage__container__createCourse'>
+                <div className='instructorPage__createCourse'>
 
                     { /* Div que contiene el título y introducción del instructor */ }
-                    <div className='instructorPage__container__createCourse__titles'>
+                    <div className='instructorPage__createCourse__titles'>
 
                         <h2>Instructor</h2>
                         <p>
@@ -45,7 +46,7 @@ export const InstructorPage = () => {
                     </div>
 
                     { /* Div que todos los inputs para crear el curso */ }
-                    <div className='instructorPage__container__createCourse__data'>
+                    <div className='instructorPage__createCourse__data'>
                     
                         <Textfield 
                             type='text' 
@@ -58,7 +59,7 @@ export const InstructorPage = () => {
                         />
 
                         { /* Div que tiene el fiel y el contenido del video e imagen del curso */ }
-                        <div className='instructorPage__container__createCourse__data__videoImage'>
+                        <div className='instructorPage__createCourse__data__videoImage'>
 
                             <Textfield 
                                 type='text' 
@@ -70,7 +71,7 @@ export const InstructorPage = () => {
                                 onChange={ onInputChange }
                             />
 
-                            <div className='instructorPage__container__createCourse__data__videoImage__content'>
+                            <div className='instructorPage__createCourse__data__videoImage__content'>
                                 {
                                     ( stateForm.videoUrl.length !== 0 && ValidationIframe.isValidUrl( stateForm.videoUrl ) )
                                      ? <iframe src={ stateForm.videoUrl }/>
@@ -81,7 +82,7 @@ export const InstructorPage = () => {
                         </div>
 
                         { /* Div que tiene el fiel y el contenido del video e imagen del curso */ }
-                        <div className='instructorPage__container__createCourse__data__videoImage'>
+                        <div className='instructorPage__createCourse__data__videoImage'>
 
                             <Textfield 
                                 type='text' 
@@ -93,7 +94,7 @@ export const InstructorPage = () => {
                                 onChange={ onInputChange }
                             />
 
-                            <div className='instructorPage__container__createCourse__data__videoImage__content'>
+                            <div className='instructorPage__createCourse__data__videoImage__content'>
                                 <img 
                                     src={ stateForm.imageUrl ? stateForm.imageUrl : iconImageInstructor } 
                                     alt="" 
@@ -147,7 +148,7 @@ export const InstructorPage = () => {
                         <SectionRequirements onChange={ onChangeSections }/>
 
                         { /* Componente sección para agregas secciones con sus clases */ }
-                        <div className='instructorPage__container__createCourse__data__createSections'>
+                        <div className='instructorPage__createCourse__data__createSections'>
 
                             <h1>Secciones</h1>
                             <SectionCourse 
@@ -160,11 +161,11 @@ export const InstructorPage = () => {
                     </div>
 
                     { /* Div que tiene el botón para crear el curso */ }
-                    <div className='instructorPage__container__createCourse__settings'>
+                    <div className='instructorPage__createCourse__settings'>
 
                         <h1>Configuraciones</h1>
 
-                        <div className='instructorPage__container__createCourse__settings__buttons'>
+                        <div className='instructorPage__createCourse__settings__buttons'>
 
                             <button type='button' onClick={ onHandleCreateCurse }>
                                 Crear curso
@@ -181,10 +182,10 @@ export const InstructorPage = () => {
                 </div>
 
                 { /* Div que la tabla donde se muestra los cursos publicados por el instructor */ }
-                <div className='instructorPage__container__publishCourses'>
+                <div className='instructorPage__publishCourses'>
 
                     <h1>Tus cursos publicados</h1>
-                    <div className='instructorPage__container__publishCourses__courses'>
+                    <div className='instructorPage__publishCourses__courses'>
 
                         <CardCourse type='small'/>
 
@@ -206,7 +207,7 @@ export const InstructorPage = () => {
 
             </div>
 
-        </div>
+        </LayoutPagesMenu>
     );
 
 }

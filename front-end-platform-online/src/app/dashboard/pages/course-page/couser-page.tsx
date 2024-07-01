@@ -4,6 +4,7 @@ import { useCoursePage } from './useCoursePage';
 
 //* Components
 import { SectionContent, SectionData, SectionDescription, SectionExtra, SectionInstructor } from './components';
+import { LayoutPagesMenu } from '../../layout/layout-pages-menu';
 
 export const CoursePage = () => {
 
@@ -17,11 +18,11 @@ export const CoursePage = () => {
     } = useCoursePage();
 
     return (
-        <div className='coursePage'>
+        <LayoutPagesMenu>
 
-            <div className='coursePage__container'>
+            <div className='coursePage width-container'>
 
-                <div className='coursePage__container__firstSection'>
+                <div className='coursePage__firstSection'>
 
                     <SectionDescription
                         data={ dataDescription }
@@ -43,7 +44,7 @@ export const CoursePage = () => {
 
                 </div>
 
-                <div className='coursePage__container__secondSection'>
+                <div className='coursePage__secondSection'>
 
                     <SectionData
                         data={ dataInformationCourse }
@@ -57,7 +58,7 @@ export const CoursePage = () => {
 
             </div>
 
-        </div>
+        </LayoutPagesMenu>
     );
 
 }
