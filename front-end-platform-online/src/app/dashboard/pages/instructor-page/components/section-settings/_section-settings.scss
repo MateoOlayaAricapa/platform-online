@@ -1,0 +1,50 @@
+.sectionSettings {
+    width: 100%;
+
+    @include displayFlex(
+        flex-start,
+        center,
+        column,
+        none,
+        1em
+    );
+
+    h1 {
+        font-size: 0.9em;
+    }
+
+    &__buttons {
+        width: 100%;
+
+        @include displayFlex(
+            center,
+            flex-start,
+            none,
+            none,
+            0.5em
+        );
+
+        button:nth-of-type(2) {
+            background-color: transparent;
+            border: 1px solid $color3;
+
+            color: $color3;
+        }
+
+        button {
+            padding: 0.6em 3em 0.6em 3em;
+            box-sizing: border-box;
+
+            background-color: $color3;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            font-family: $main-font;
+            font-weight: 500;
+            font-size: 0.85em;
+            color: $color4;
+        }
+        
+    }
+}

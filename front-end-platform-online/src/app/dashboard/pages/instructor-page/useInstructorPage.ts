@@ -3,7 +3,7 @@ import { SectionsCourse } from "../../components/section-course/interface/interf
 import { ValidatedValueTexfield } from "../../../../helpers/validated-textfield";
 import { useModal } from "../../../../hooks/useModal";
 
-interface Curse {
+export interface Curse {
     title       : string;
     videoUrl    : string;
     imageUrl    : string;
