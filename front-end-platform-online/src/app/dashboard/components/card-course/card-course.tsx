@@ -12,11 +12,12 @@ export const CardCourse = ( { type }: CardCourseProps ) => {
     const { 
         isCompleteCard, 
         isProgressCard, 
-        isSmallCard, 
+        isSmallCard,
+        onHandleOpenCourse 
     } = useCardCourse( type );
 
     return (
-        <div className={ isCompleteCard ? 'cardCourse' : 'cardCourseType' }>
+        <div className={ isCompleteCard ? 'cardCourse' : 'cardCourseType' } onClick={ onHandleOpenCourse }>
 
             <div className={ isCompleteCard ? 'cardCourse__image' : 'cardCourseType__image' }>
                 <img src="" alt="" />
