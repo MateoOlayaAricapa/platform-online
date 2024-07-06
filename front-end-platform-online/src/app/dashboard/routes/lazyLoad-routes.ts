@@ -32,7 +32,7 @@ export const routesDashboard: RoutesDashboard[] = [
         id: Uuid.v4()
     },
     {
-        path: '/course',
+        path: '/course/:name/:id',
         Component: coursePageLazy,
         id: Uuid.v4()
     }

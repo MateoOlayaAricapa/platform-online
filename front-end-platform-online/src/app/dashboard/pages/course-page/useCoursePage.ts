@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { SectionsCourse } from "../../components/section-course/interface/interface";
 
 export const useCoursePage = () => {
@@ -67,7 +69,17 @@ export const useCoursePage = () => {
         },
     ];
 
+    const { name, id } = useParams();
+
     //* Methods.
+
+
+    //* Useffect
+    useEffect(() => {
+
+        console.log( name, id );
+
+    }, []);    
 
     return {
         //* Attributes.
