@@ -52,11 +52,10 @@ export const Textfield = ( props: TextfieldProps ) => {
 
                 {
                     ( type === 'password' ) && (
-                        <button type='button'>
+                        <button type='button' onClick={ onHandleButtonPassword } aria-label='btn-password'>
                             <img 
                                 src={ isShowPassword ? openEyes : closedEyes } 
                                 alt={ `${ isShowPassword ? 'Icono de mostrar' : 'Icono de ocultar' }` }
-                                onClick={ onHandleButtonPassword } 
                             />
                         </button>
                     )
