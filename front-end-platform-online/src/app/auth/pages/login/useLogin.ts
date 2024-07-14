@@ -3,6 +3,8 @@ import { ValidatedValueTexfield } from "../../../../helpers/validated-textfield"
 import { useForm } from "../../../../hooks/useForm"
 import { FormLogin } from "../../../interfaces/interfaces";
 
+type FormEvent = React.FormEvent<HTMLFormElement>;
+
 export const useLogin = () => {
 
     //* Attributes.
@@ -14,9 +16,9 @@ export const useLogin = () => {
     const navigate = useNavigate();
 
     //* Methods.
-    const onHandleSubmit = ( event: React.FormEvent<HTMLFormElement> ): void => {
+    const onHandleSubmit = ( event: FormEvent ): void => {
         event.preventDefault();
-        
+
         const { status, errorMessage } = ValidatedValueTexfield.isValidated( stateForm );
         if ( !status ) return alert( errorMessage );
     }

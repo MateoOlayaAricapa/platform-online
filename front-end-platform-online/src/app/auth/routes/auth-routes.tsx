@@ -7,7 +7,8 @@ export const AuthRoutes = () => {
         <Routes>
             {
                 routesAuth.map(({ Component, id, path }) => (
-                    <Route 
+                    <Route
+                        key={ id } 
                         id={ id }
                         path={ path }
                         element={ <Component/> }
