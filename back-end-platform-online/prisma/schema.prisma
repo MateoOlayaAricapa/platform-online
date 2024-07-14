@@ -1,0 +1,135 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model usuario {
+  id_usuario        Int       @id @default( autoincrement() )
+  nombre            String
+  apellido          String
+  correo            String    @unique
+  contrasena        String    @unique
+  sobremi           String?  
+  profesion         String?
+  foto_url          String?
+  createdAt         DateTime  @default( now() )
+  deletedAt         Boolean   @default( false )
+
+  usuarioCurso      usuario_curso[]
+}
+
+model usuario_curso {
+  id_usuario_curso  Int       @id @default( autoincrement() )
+  id_usuario        Int
+  id_curso          Int
+  rol               String
+  estaCompletado    Boolean
+  createdAt         DateTime  @default( now() )
+  deletedAt         Boolean   @default( false )
+
+  //* Relaciones
+  usuario           usuario   @relation( fields: [id_usuario], references: [id_usuario] )
+  curso             curso     @relation( fields: [id_curso], references: [id_curso] )
+}
+
+model curso {
+  id_curso          Int       @id @default( autoincrement() )
+  titulo            String
+  descripcion       String
+  fecha_creacion    DateTime
+  idioma            String
+  total_secciones   Int
+  total_clases      Int
+  total_tiempo      String
+  video_url         String?
+  imagen_url        String?
+  createdAt         DateTime  @default( now() )
+  deletedAt         Boolean   @default( false )
+  
+  usuarioCurso      usuario_curso[]
+  formacion         formacion[] //* El curso es de uno a muchos con la entidad formación
+  requisito         requisito[]
+  cursoTema         curso_tema[]
+  seccion           seccion[]
+}
+
+model formacion {
+  id_formacion      Int       @id   @default( autoincrement() )
+  id_curso          Int
+  contenido         String
+  createdAt         DateTime  @default( now() )
+  deletedAt         Boolean   @default( false )
+
+  //* Relación
+  curso             curso     @relation( fields: [id_curso], references: [id_curso] )
+}
+
+model requisito {
+  id_requisito      Int       @id   @default( autoincrement() )
+  id_curso          Int
+  contenido         String
+  createdAt         DateTime  @default( now() )
+  deletedAt         Boolean   @default( false )
+
+  //* Relación  
+  curso             curso     @relation( fields: [id_curso], references: [id_curso] )
+}
+
+model tema {
+  id_tema           Int       @id   @default( autoincrement() )
+  nombre            String
+  createdAt         DateTime  @default( now() )
+  deletedAt         Boolean   @default( false )
+
+  cursoTema         curso_tema[]
+}
+
+model curso_tema {
+  id_curso_tema     Int       @id   @default( autoincrement() )
+  id_curso          Int
+  id_tema           Int
+  createdAt         DateTime  @default( now() )
+  deletedAt         Boolean   @default( false )
+
+  //* Relación
+  tema              tema      @relation( fields: [id_tema], references: [id_tema] )
+  curso             curso     @relation( fields: [id_curso], references: [id_curso] )
+}
+
+model seccion {
+  id_seccion        Int       @id   @default( autoincrement() )
+  id_curso          Int
+  titulo            String
+  total_tiempo      String
+  createdAt         DateTime  @default( now() )
+  deletedAt         Boolean   @default( false )
+
+  //* Relación
+  curso             curso     @relation( fields: [id_curso], references: [id_curso] )
+  clase             clase[]
+}
+
+model clase {
+  id_clase          Int       @id   @default( autoincrement() )
+  id_seccion        Int
+  titulo            String
+  tiempo            String
+  url_contenido     String
+  tipo              String
+  estaCompletado    Boolean   @default( false )
+  createdAt         DateTime  @default( now() )
+  deletedAt         Boolean   @default( false )
+
+  //* Relación
+  seccion           seccion   @relation( fields: [id_seccion], references: [id_seccion] )
+}

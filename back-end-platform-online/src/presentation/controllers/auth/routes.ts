@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { AuthController } from "./controller";
 import { AuthService } from "../../services";
+import { prisma } from "../../../data/postgres";
 
 export class AuthRoutes {
 
@@ -8,7 +9,8 @@ export class AuthRoutes {
 
         const router = Router();
 
-        const authController = new AuthController( new AuthService() )
+        const authService = new AuthService( prisma );
+        const authController = new AuthController( authService );
 
         //* EndPoints
         router.get('/login', authController.login );
