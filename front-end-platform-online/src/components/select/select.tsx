@@ -23,7 +23,7 @@ export const Select = ( { children, className, classNameOption, initialValue, na
                 
                 <h1>{ title }</h1>
 
-                <div className='select__option' onClick={ onShowListOptions }>
+                <div className='select__option' onClick={ onShowListOptions } aria-label='div-select'>
                     
                     <h2>{ selectedOption }</h2>
                     <img src={ iconArrowSelect } alt="Arrow select"/>
@@ -34,6 +34,7 @@ export const Select = ( { children, className, classNameOption, initialValue, na
                                 className='select__option__listOptions' 
                                 onMouseLeave={ onShowListOptions }
                                 style={ styleListOptions }
+                                aria-label='div-select-options'
                             >
 
                                 { children }

@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { RootState } from "../store/stores"
 
 export const useAuthStore = () => {
 
     //* Attributes.
     const { status, user, isLoadingAuth } = useSelector( ( state: RootState ) => state.auth );
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
     //* Methods.
     const onHandleLoginAuth = async(): Promise<void> => {}

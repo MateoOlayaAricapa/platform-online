@@ -15,6 +15,7 @@ export const Option = ( { value }: OptionProps ) => {
             className={ `option ${ classNameOption || '' }` }
             onClick={ () => onHandleSelectOption( value ) } 
             style={ styleOption }
+            aria-label='div-option'
         >
             <h2>{ value }</h2>
         </div>

@@ -32,7 +32,7 @@ export const LoginPage = () => {
                         </p>
                     </div>
 
-                    <form onSubmit={ onHandleSubmit }>
+                    <form onSubmit={ onHandleSubmit } aria-label='submit-form'>
                         
                         { false && <ErrorMessage/> }
 

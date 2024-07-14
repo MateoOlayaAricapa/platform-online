@@ -23,7 +23,7 @@ export const RegisterPage = () => {
                 </div>
 
                 { /* form que contiene los textfileds para registrarse */ }
-                <form onSubmit={ onHandleSubmitRegister }>
+                <form onSubmit={ onHandleSubmitRegister } aria-label='form-register'>
 
                     { false && <ErrorMessage/> }
 
@@ -41,7 +41,7 @@ export const RegisterPage = () => {
                         ))
                     }
 
-                    <button type='submit' className='style-button'>
+                    <button type='submit' className='style-button' aria-label='btn-register-page'>
                         Registrarse
                     </button>
 
