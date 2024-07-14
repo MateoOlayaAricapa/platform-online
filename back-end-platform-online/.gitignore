@@ -1,0 +1,4 @@
+pgadmin/
+postgres-db
+node_modules/
+.env

@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    container_name: postgres-db
+    image: postgres:16.3
+    volumes:
+      - ./postgres-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+
+  pgAdmin:
+    depends_on:
+      - db
+    container_name: pgAdmin
+    image: dpage/pgadmin4:8
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+    ports:
+      - 8080:80
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
