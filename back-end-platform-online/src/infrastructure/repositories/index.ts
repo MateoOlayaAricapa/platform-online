@@ -1,0 +1,1 @@
+export { UsuarioRepositoryImpl } from "./usuario.repository.impl";
