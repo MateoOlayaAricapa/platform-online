@@ -33,8 +33,9 @@ export class AuthController {
 
     public update = ( req: Request, res: Response ) => {
 
-        const { id } = req.params;
-        const { error, updateUser } = UpdateUserDTO.update({ ...req.body, id: parseInt( id ) });
+        const { user } = req.body;
+        
+        const { error, updateUser } = UpdateUserDTO.update({ ...req.body, id: user.id_usuario });
         if ( error ) return res.status( 400 ).json( error );
 
         this.authService.updateUser( updateUser! )
@@ -45,10 +46,9 @@ export class AuthController {
 
     public delete = ( req: Request, res: Response ) => {
 
-        const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'El valor [id] está vacío' });
+        const { user } = req.body;
 
-        this.authService.deleteUser( parseInt(id) )
+        this.authService.deleteUser( parseInt( user.id_usuario ) )
             .then( response => res.json({ message: 'success', data: { ...response } }) )
             .catch( err => handleError( err, res ) )
 

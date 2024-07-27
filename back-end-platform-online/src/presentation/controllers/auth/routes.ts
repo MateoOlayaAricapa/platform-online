@@ -3,6 +3,7 @@ import { AuthController } from "./controller";
 import { AuthService } from "../../services";
 import { UsuarioDatasourceImpl } from "../../../infrastructure/datasource/usuario.datasource.impl";
 import { UsuarioRepositoryImpl } from "../../../infrastructure/repositories";
+import { AuthMiddleware } from "../../middlewares";
 
 export class AuthRoutes {
 
@@ -19,8 +20,8 @@ export class AuthRoutes {
         //* EndPoints
         router.get('/login', authController.login );
         router.post( '/register', authController.register );
-        router.put( '/update/:id', authController.update );
-        router.delete( '/delete/:id', authController.delete );
+        router.put( '/update', [ AuthMiddleware.validateJWT ], authController.update );
+        router.delete( '/delete', [ AuthMiddleware.validateJWT ], authController.delete );
 
         return router;
 

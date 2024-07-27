@@ -1,4 +1,4 @@
-import { BcriptAdapter } from "../../config";
+import { BcriptAdapter, envs, JWTAdapter } from "../../config";
 import { LoginUserDTO, RegisterUserDTO, UpdateUserDTO } from "../../domain/DTOs";
 import { CustomError } from "../../domain/errors";
 import { UsuarioRepository } from "../../domain/repository";
@@ -13,13 +13,17 @@ export class AuthService {
 
         try {
 
-            const { contrasena: password, ...usuarioEntity } = await this.usuarioRepository.getUser( loginDto );
+            const { contrasena: password, id_usuario, ...usuarioEntity } = await this.usuarioRepository.getUser( loginDto );
             
             //* Verificando si las contraseñas son diferentes
             if ( !BcriptAdapter.compare( loginDto.password, password ) ) throw CustomError.badRequest('Correo o contraseña incorrecto');
 
+            const token = await JWTAdapter.generateToken( { id: id_usuario }, '2h', envs.SEED );
+            if ( !token ) throw CustomError.internalServer('Error generando token');
+
             return {
-                user: usuarioEntity
+                user: usuarioEntity,
+                token
             }
 
         } catch (error) {
@@ -40,10 +44,14 @@ export class AuthService {
             registerDto.contrasena = BcriptAdapter.hash( password );
 
             //* Guardando usuario.
-            const { contrasena, ...userEntity } = await this.usuarioRepository.createUser( registerDto );
+            const { contrasena, id_usuario, ...userEntity } = await this.usuarioRepository.createUser( registerDto );
+
+            const token = await JWTAdapter.generateToken( { id: id_usuario }, '2h', envs.SEED );
+            if ( !token ) throw CustomError.internalServer('Error generando token');
 
             return {
-                user: { ...userEntity }
+                user: { ...userEntity },
+                token
             }
 
         } catch (error) {
@@ -62,7 +70,7 @@ export class AuthService {
             //* Encriptando contraseña si se va actualizar únicamente.
             if ( updateDto.passwordToUpdate ) { updateDto.contrasena = BcriptAdapter.hash( updateDto.contrasena! ) };
 
-            const { contrasena, ...usuarioUpdate } = await this.usuarioRepository.updateUser( updateDto );
+            const { contrasena, id_usuario, ...usuarioUpdate } = await this.usuarioRepository.updateUser( updateDto );
 
             return {
                 user: ( updateDto.passwordToUpdate ) ? { message: 'Contraseña actualizada' } : { ...usuarioUpdate }
