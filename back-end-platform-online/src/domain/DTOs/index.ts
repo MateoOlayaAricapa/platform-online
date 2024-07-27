@@ -10,3 +10,6 @@ export { CreateUserCourseDTO } from "./usuario-curso/create-usuario-course.dto";
 export { UpdateUserCourseDTO } from "./usuario-curso/update-usuario-course.dto";
 
 export { CreateCourseTopicDTO } from "./curso-tema/create-curso-tema.dto";
+
+export { CreateSeccionDTO } from "./seccion/create-seccion.dto";
+export { UpdateSeccionDTO } from "./seccion/update-seccion.dto";
