@@ -13,3 +13,6 @@ export { CreateCourseTopicDTO } from "./curso-tema/create-curso-tema.dto";
 
 export { CreateSeccionDTO } from "./seccion/create-seccion.dto";
 export { UpdateSeccionDTO } from "./seccion/update-seccion.dto";
+
+export { CreateClaseDTO } from "./clase/create-clase.dto";
+export { UpdateClaseDTO } from "./clase/update-clase.dto";
