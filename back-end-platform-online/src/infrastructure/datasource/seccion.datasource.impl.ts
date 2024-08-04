@@ -5,7 +5,24 @@ import { SeccionEntity } from "../../domain/entities";
 
 export class SeccionDatasourceImpl implements SeccionDatasource {
     
-    async deleteSeccion(idCurso: number): Promise<String> {
+    async deleteSeccion(idSeccion: number): Promise<String> {
+       
+        const seccion = await prisma.seccion.update({
+            where: {
+                id_seccion: idSeccion
+            },
+            data: {
+                deletedAt: true
+            }
+        });
+
+        if ( !seccion ) throw 'Seccion no encontrada';
+
+        return 'Sección eliminada';
+
+    }
+    
+    async deleteSecciones(idCurso: number): Promise<String> {
         
         const secciones = await prisma.seccion.updateMany({
             where: {

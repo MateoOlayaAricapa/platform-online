@@ -20,6 +20,7 @@ export class SeccionRoutes {
         //* Endpoints.
         router.post( '/create', [ AuthMiddleware.validateJWT ], seccionController.create );
         router.put( '/update/:id', [ AuthMiddleware.validateJWT ], seccionController.update );
+        router.delete( '/deleteAll/:id', [ AuthMiddleware.validateJWT ], seccionController.deleteAll );
         router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], seccionController.delete );
 
         return router;

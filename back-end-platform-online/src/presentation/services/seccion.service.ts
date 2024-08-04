@@ -40,11 +40,25 @@ export class SeccionService {
 
     }
 
-    public async delete( idCurso: number ) {
+    public async deleteAll( idCurso: number ) {
 
         try {
             
-            const result = await this.seccionRepository.deleteSeccion( idCurso );
+            const result = await this.seccionRepository.deleteSecciones( idCurso );
+
+            return result;
+
+        } catch (error) {
+            throw CustomError.internalServer(`${ error }`);
+        }
+
+    }
+
+    public async delete( idSeccion: number ) {
+
+        try {
+            
+            const result = await this.seccionRepository.deleteSeccion( idSeccion );
 
             return result;
 
