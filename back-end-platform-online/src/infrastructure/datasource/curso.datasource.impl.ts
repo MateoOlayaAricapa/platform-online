@@ -62,11 +62,17 @@ export class CursoDataSourceImpl implements CursoDatasource {
                 formacion: {
                     select: {
                         contenido: true
+                    },
+                    where: {
+                        deletedAt: false
                     }
                 },
                 requisito: {
                     select: {
                         contenido: true
+                    },
+                    where: {
+                        deletedAt: false
                     }
                 },
                 seccion: {
@@ -82,6 +88,9 @@ export class CursoDataSourceImpl implements CursoDatasource {
                                 estaCompletado: true
                             }
                         }
+                    },
+                    where: {
+                        deletedAt: false
                     }
                 },
                 cursoTema: {
@@ -91,6 +100,9 @@ export class CursoDataSourceImpl implements CursoDatasource {
                                 nombre: true
                             }
                         }
+                    },
+                    where: {
+                        deletedAt: false
                     }
                 }
             },
