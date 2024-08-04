@@ -47,8 +47,8 @@ export class CursoController {
 
         const { user } = req.body;
 
-        const { idCurso, type } = req.params;
-        const { error, getAllCourses } = GetAllCoursesDTO.getAll({ idUsuario: user.id_usuario, idCurso: parseInt( idCurso ), type });
+        const { type } = req.params;
+        const { error, getAllCourses } = GetAllCoursesDTO.getAll({ idUsuario: user.id_usuario, type });
         if ( error ) return res.status( 400 ).json( error );
 
         this.cursoService.getCursos( getAllCourses! )

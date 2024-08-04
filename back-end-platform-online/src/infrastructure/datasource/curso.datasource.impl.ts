@@ -47,6 +47,7 @@ export class CursoDataSourceImpl implements CursoDatasource {
             include: {
                 usuarioCurso: {
                     select: {
+                        rol: true,
                         usuario: {
                             select: {
                                 apellido: true,
@@ -92,7 +93,7 @@ export class CursoDataSourceImpl implements CursoDatasource {
                         }
                     }
                 }
-            }
+            },
         });
 
         if ( !curso ) throw 'Curso no encontrado';
@@ -171,8 +172,6 @@ export class CursoDataSourceImpl implements CursoDatasource {
         return cursos.map( curso => AllCursosEntity.fromObject( curso ) )
 
     }
-
-    //TODO: implementar el JWT para este endpoint
 
 }
 

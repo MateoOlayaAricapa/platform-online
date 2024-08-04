@@ -22,7 +22,7 @@ export class CursoRoutes {
         router.put( '/update/:id', [ AuthMiddleware.validateJWT ], cursoController.update );
         router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], cursoController.delete );
 
-        router.get( '/getAll/:idCurso/:type', [ AuthMiddleware.validateJWT ], cursoController.getAll );
+        router.get( '/getAll/:type', [ AuthMiddleware.validateJWT ], cursoController.getAll );
         router.get( '/get/:id', [ AuthMiddleware.validateJWT ], cursoController.getById );
 
         return router;
