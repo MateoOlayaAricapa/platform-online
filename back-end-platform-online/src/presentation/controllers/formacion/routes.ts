@@ -3,6 +3,7 @@ import { FormacionController } from "./controller";
 import { FormacionService } from "../../services";
 import { FormacionDatasourceImpl } from "../../../infrastructure/datasource/formacion.datasource.impl";
 import { FormacionRepositoryImpl } from "../../../infrastructure/repositories";
+import { AuthMiddleware } from "../../middlewares";
 
 export class FormacionRoutes {
 
@@ -16,10 +17,10 @@ export class FormacionRoutes {
 
         const formacionController = new FormacionController( formacionService );
 
-        router.post( '/create', formacionController.create );
-        router.put( '/update/:id', formacionController.update );
-        router.delete( '/delete/:id', formacionController.delete );
-        router.delete( '/deleteAll/:id', formacionController.deleteAll );
+        router.post( '/create', [ AuthMiddleware.validateJWT ], formacionController.create );
+        router.put( '/update/:id', [ AuthMiddleware.validateJWT ], formacionController.update );
+        router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], formacionController.delete );
+        router.delete( '/deleteAll/:id', [ AuthMiddleware.validateJWT ], formacionController.deleteAll );
 
         return router;
 
