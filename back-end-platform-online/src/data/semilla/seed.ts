@@ -1,4 +1,4 @@
-import { prisma } from "../data/postgres";
+import { prisma } from "../postgres";
 import { seedData } from "./data";
 
 ( async() => {

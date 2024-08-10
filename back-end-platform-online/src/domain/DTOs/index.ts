@@ -16,3 +16,6 @@ export { UpdateSeccionDTO } from "./seccion/update-seccion.dto";
 
 export { CreateClaseDTO } from "./clase/create-clase.dto";
 export { UpdateClaseDTO } from "./clase/update-clase.dto";
+
+export { CreateFormacionDTO } from "./formacion/create-formacion.dto";
+export { UpdateFormacionDTO } from "./formacion/update-formacion.dto";
