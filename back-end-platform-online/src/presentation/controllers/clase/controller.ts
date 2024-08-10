@@ -11,11 +11,11 @@ export class ClaseController {
 
     public create = ( req: Request, res: Response ) => {
 
-        const { createClase, error } = CreateClaseDTO.create({ ...req.body });
+        const { createClases, error } = CreateClaseDTO.create([ ...req.body ]);
         if ( error ) return res.status(400).json({ error });
 
-        this.claseService.create( createClase! )
-            .then( clase => res.json({ message: 'success', data: { ...clase } }) )
+        this.claseService.create( createClases! )
+            .then( result => res.json({ message: 'success', data: result }) )
             .catch( err => handleError( err, res ) );
 
     }

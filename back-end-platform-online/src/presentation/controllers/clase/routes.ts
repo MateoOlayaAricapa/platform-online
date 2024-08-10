@@ -11,14 +11,14 @@ export class ClaseRoutes {
 
         const router = Router();
 
-        const datasource = new ClaseDatasourceImpl();
+        const datasource      = new ClaseDatasourceImpl();
         const claseRepository = new ClaseRepositoryImpl( datasource );
-        const claseService = new ClaseService( claseRepository );
+        const claseService    = new ClaseService( claseRepository );
 
         const claseController = new ClaseController( claseService );
 
         //* Definiendo rutas
-        router.post( '/create', [ AuthMiddleware.validateJWT ], claseController.create );
+        router.post( '/create', [AuthMiddleware.validateJWT], claseController.create );
         router.put( '/update/:id', [AuthMiddleware.validateJWT], claseController.update );
         router.delete( '/delete/:id', [AuthMiddleware.validateJWT], claseController.delete );
         router.delete( '/deleteAll/:id', [AuthMiddleware.validateJWT], claseController.deleteAll );

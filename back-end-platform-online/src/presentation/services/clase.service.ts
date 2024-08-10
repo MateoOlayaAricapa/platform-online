@@ -8,15 +8,13 @@ export class ClaseService {
         private readonly claseRepository: ClaseRepository,
     ){}
 
-    public async create( createClaseDto: CreateClaseDTO ) {
+    public async create( createClasesDto: CreateClaseDTO[] ) {
 
         try {
 
-            const clase = await this.claseRepository.create( createClaseDto );
+            const result = await this.claseRepository.create( createClasesDto );
 
-            return {
-                clase: { ...clase },
-            }
+            return result;
             
         } catch (error) {
             throw CustomError.internalServer(`${ error }`);
@@ -27,6 +25,9 @@ export class ClaseService {
     public async update( updateClaseDto: UpdateClaseDTO ) {
 
         try {
+
+            const isNothing = updateClaseDto.nothingToUpdate();
+            if ( isNothing ) throw CustomError.badRequest('No hay datos a actualizar');
 
             const clase = await this.claseRepository.update( updateClaseDto );
 

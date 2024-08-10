@@ -9,23 +9,23 @@ export class ClaseRepositoryImpl implements ClaseRepository {
         private readonly datasource: ClaseDatasource,
     ){}
 
-    getById(id: number): Promise<ClaseEntity> {
+    getById( id: number ): Promise<ClaseEntity> {
         throw new Error("Method not implemented.");
     }
     
-    create(createClaseDto: CreateClaseDTO): Promise<ClaseEntity> {
-        return this.datasource.create( createClaseDto );
+    create( createClasesDto: CreateClaseDTO[] ): Promise<string> {
+        return this.datasource.create( createClasesDto );
     }
     
-    update(updateClaseDto: UpdateClaseDTO): Promise<ClaseEntity> {
+    update( updateClaseDto: UpdateClaseDTO ): Promise<ClaseEntity> {
         return this.datasource.update( updateClaseDto );
     }
     
-    delete(id: number): Promise<string> {
+    delete( id: number ): Promise<string> {
         return this.datasource.delete( id );
     }
 
-    deleteAll(idSeccion: number): Promise<string> {
+    deleteAll( idSeccion: number ): Promise<string> {
         return this.datasource.deleteAll( idSeccion );
     }
 

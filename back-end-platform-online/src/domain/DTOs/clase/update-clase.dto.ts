@@ -31,6 +31,16 @@ export class UpdateClaseDTO {
         this.estaCompletado  = estaCompletado;
     }
 
+    public nothingToUpdate(): boolean {
+
+        for( let key in this ) {
+            if ( this[key] !== undefined && key !== 'id_clase' ) return false;
+        }
+
+        return true;
+
+    }
+
     get valuesToUpdate() {
 
         const objectUpdate: { [key: string]: any } = {};

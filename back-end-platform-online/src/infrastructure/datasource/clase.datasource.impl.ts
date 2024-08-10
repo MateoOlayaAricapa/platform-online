@@ -5,7 +5,7 @@ import { ClaseEntity } from "../../domain/entities";
 
 export class ClaseDatasourceImpl implements ClaseDatasource {
     
-    async getById(id: number): Promise<ClaseEntity> {
+    async getById( id: number ): Promise<ClaseEntity> {
         
         const clase = await prisma.clase.findUnique({
             where: {
@@ -20,17 +20,19 @@ export class ClaseDatasourceImpl implements ClaseDatasource {
 
     }
     
-    async create(createClaseDto: CreateClaseDTO): Promise<ClaseEntity> {
+    async create( createClasesDto: CreateClaseDTO[] ): Promise<string> {
         
-        const clase = await prisma.clase.create({
-            data: createClaseDto,
+        const clases = await prisma.clase.createManyAndReturn({
+            data: createClasesDto,
         });
 
-        return ClaseEntity.fromObject( clase );
+        if ( clases.length === 0 ) throw 'Problema al crear las clases';
+
+        return 'Clases creadas para la sección';
 
     }
     
-    async update(updateClaseDto: UpdateClaseDTO): Promise<ClaseEntity> {
+    async update( updateClaseDto: UpdateClaseDTO ): Promise<ClaseEntity> {
         
         await this.getById( updateClaseDto.id_clase );
 
@@ -45,35 +47,36 @@ export class ClaseDatasourceImpl implements ClaseDatasource {
 
     }
     
-    async delete(id: number): Promise<string> {
+    async delete( id: number ): Promise<string> {
         
         await this.getById( id );
 
         await prisma.clase.update({
             where: {
-                id_clase: id
+                id_clase: id,
             },
             data: {
-                deletedAt: true
-            }
+                deletedAt: true,
+            },
         });
         
         return 'Clase eliminada de la sección';
 
     }
 
-    async deleteAll(idSeccion: number): Promise<string> {
+    async deleteAll( idSeccion: number ): Promise<string> {
         
-        const clases = await prisma.clase.updateMany({
+        const { count } = await prisma.clase.updateMany({
             where: {
                 id_seccion: idSeccion,
+                deletedAt: false,
             },
             data: {
-                deletedAt: true
-            }
+                deletedAt: true,
+            },
         });
 
-        if ( !clases ) throw 'Clases no encontradas para la sección';
+        if ( count === 0 ) throw 'Clases no encontradas para la sección';
 
         return 'Eliminada todas las clases de la sección';
 

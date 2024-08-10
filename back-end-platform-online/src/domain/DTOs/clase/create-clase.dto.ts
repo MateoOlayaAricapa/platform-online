@@ -8,8 +8,8 @@ interface CreateClaseOptions {
 }
 
 type createReturn = {
-    error?      : string;
-    createClase?: CreateClaseDTO;
+    error?       : string;
+    createClases?: CreateClaseDTO[];
 }
 
 export class CreateClaseDTO {
@@ -31,31 +31,60 @@ export class CreateClaseDTO {
         this.estaCompletado  = estaCompletado;
     }
 
-    private static isReadyToCreateClase( object: { [key: string]: any } ): string | undefined {
+    private static isReadyToCreateClase( clases: { [key: string]: any }[] ): string | undefined {
 
-        for( let field in object ) {
+        for( let clase of clases ) {
 
-            if ( !object[field] ) return `El campo ${ field } está vacío`;
+            const properties_object = Object.getOwnPropertyNames( clase );
 
-            switch ( typeof object[field] ) {
-                case 'number':
-                    if ( <number>object[field] < 0 ) return `No puede ser menor a cero: ${ field }`;
-                    break;
+            for( let mandatory_propiertie of ['id_seccion', 'titulo', 'tiempo', 'url_contenido', 'tipo', 'estaCompletado'] ) {
+
+                if ( !properties_object.includes( mandatory_propiertie ) ) {
+
+                    return `[ ${ mandatory_propiertie } ] es obligatoria`;
+                
+                }
+            
+            }
+            
+            for( let field in clase ) {
+
+                switch ( typeof clase[field] ) {
+                    case 'boolean':
+                        if ( clase[field] === undefined ) return `${ field } está vacío`;
+                        break;
+                    case 'string':
+                        if ( clase[field] === '' ) return `${ field } está vacío`;
+                        if ( field === 'id_seccion' ) return `${ field } debe ser un número`;
+                        break;
+
+                    case 'number':
+                        if ( <number>clase[field] < 0 ) return `No puede ser menor a cero: ${ field }`;
+                        break;
+                }
+
             }
 
         }
 
     }
 
-    static create( reqBody: { [key: string]: any } ): createReturn {
-
-        const { id_seccion, titulo, tiempo, url_contenido, tipo, estaCompletado } = reqBody;
+    static create( reqBody: { [key: string]: any }[] ): createReturn {
 
         const result = this.isReadyToCreateClase( reqBody );
         if ( result ) return { error: result };
 
+        let createClases = reqBody.map(({ 
+            id_seccion, 
+            titulo, 
+            tiempo, 
+            url_contenido, 
+            tipo, 
+            estaCompletado, 
+        }) => new CreateClaseDTO({ id_seccion, titulo, tiempo, url_contenido, tipo, estaCompletado }));
+
         return {
-            createClase: new CreateClaseDTO({ id_seccion, titulo, tiempo, url_contenido, tipo, estaCompletado }),
+            createClases,
         }
 
     }
