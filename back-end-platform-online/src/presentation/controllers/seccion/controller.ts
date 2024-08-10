@@ -35,10 +35,10 @@ export class SeccionController {
     public deleteAll = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'El [id] del curso está vacío' });
+        if ( !id ) return res.status(400).json({ error: 'El id del curso está vacío' });
 
         this.seccionService.deleteAll( parseInt( id ) )
-            .then( result => res.json({ message: result }) )
+            .then( result => res.json({ message: 'success', data: result }) )
             .catch( err => handleError( err, res ) )
 
     }
@@ -46,10 +46,10 @@ export class SeccionController {
     public delete = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'El [id] de la sección está vacío' });
+        if ( !id ) return res.status(400).json({ error: 'El id de la sección está vacío' });
 
         this.seccionService.delete( parseInt( id ) )
-            .then( result => res.json({ message: result }) )
+            .then( result => res.json({ message: 'success', data: result }) )
             .catch( err => handleError( err, res ) )
 
     }

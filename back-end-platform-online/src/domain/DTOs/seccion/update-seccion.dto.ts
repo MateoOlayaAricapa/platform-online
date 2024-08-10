@@ -22,6 +22,28 @@ export class UpdateSeccionDTO {
         this.total_tiempo   = total_tiempo;  
     }
 
+    public nothingToUpdate(): boolean {
+
+        for( let key in this ) {
+            if ( this[key] !== undefined && key !== 'id' ) return false;
+        }
+
+        return true;
+
+    }
+
+    get valuesToUpdate() {
+
+        const objectToUpdate: { [key: string]: any } = {};
+
+        for( let key in this ) {
+            if ( this[key] && key !== 'id' ) objectToUpdate[key] = this[key];
+        }
+
+        return objectToUpdate;
+
+    }
+
     public static update( reqBody: { [key: string]: any } ): updateReturn {
 
         const { titulo, total_tiempo, id } = reqBody;

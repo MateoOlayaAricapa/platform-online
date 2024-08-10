@@ -12,10 +12,10 @@ export class SeccionService {
 
         try {
             
-            const { id_seccion, ...seccionEntity } = await this.seccionRepository.createSeccion( createSeccionDto );
+            const seccion = await this.seccionRepository.create( createSeccionDto );
 
             return {
-                seccion: { ...seccionEntity },
+                seccion: { ...seccion },
             }
 
         } catch (error) {
@@ -28,7 +28,10 @@ export class SeccionService {
 
         try {
             
-            const { id_seccion, ...seccionEntity } = await this.seccionRepository.updateSeccion( updateSeccionDto );
+            const isNothing = updateSeccionDto.nothingToUpdate();
+            if ( isNothing ) throw CustomError.badRequest('No hay datos a actualizar');
+            
+            const { id_seccion, ...seccionEntity } = await this.seccionRepository.update( updateSeccionDto );
 
             return {
                 seccion: { ...seccionEntity }
@@ -44,7 +47,7 @@ export class SeccionService {
 
         try {
             
-            const result = await this.seccionRepository.deleteSecciones( idCurso );
+            const result = await this.seccionRepository.deleteAll( idCurso );
 
             return result;
 
@@ -58,7 +61,7 @@ export class SeccionService {
 
         try {
             
-            const result = await this.seccionRepository.deleteSeccion( idSeccion );
+            const result = await this.seccionRepository.delete( idSeccion );
 
             return result;
 

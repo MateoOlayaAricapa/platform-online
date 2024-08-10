@@ -22,13 +22,39 @@ export class CreateSeccionDTO {
         this.total_tiempo = total_tiempo;
     }
 
+    private static isReadyToCreateSeccion( seccion: { [key: string]: any } ): string | undefined {
+
+        const properties_object = Object.getOwnPropertyNames( seccion );
+
+        for( let mandatory_propiertie of ['id_curso', 'titulo', 'total_tiempo'] ) {
+
+            if ( !properties_object.includes( mandatory_propiertie ) ) return `[ ${ mandatory_propiertie } ] es obligatoria`;
+        
+        }
+
+        for( let field in seccion ) {
+
+            if ( !seccion[field] ) return `El campo ${ field } está vacío`;
+
+            switch ( typeof seccion[field] ) {
+                case 'number':
+                    if ( seccion[field] < 0 ) return `No debe ser menor a cero: ${ field }`;
+                    break;
+                case 'string':
+                    if ( field === 'id_curso' ) return `${ field } debe ser un número`;
+                    break;
+            }
+
+        }
+
+    }
+
     static create( reqBody: { [key: string]: any } ): createReturn {
 
         const { id_curso, titulo, total_tiempo } = reqBody;
 
-        if ( !id_curso )        return { error: 'El campo [id_curso] está vacío' };
-        if ( !titulo )          return { error: 'El campo [titulo] está vacío' };
-        if ( !total_tiempo )    return { error: 'El campo [total_tiempo] está vacío' };
+        const result = this.isReadyToCreateSeccion( reqBody );
+        if ( result ) return { error: result };
 
         return {
             createSeccion: new CreateSeccionDTO({ id_curso, titulo, total_tiempo }),

@@ -9,20 +9,20 @@ export class SeccionRepositoryImpl implements SeccionRepository {
         private readonly datasource: SeccionDatasource,
     ){}
     
-    deleteSeccion(idSeccion: number): Promise<String> {
-        return this.datasource.deleteSeccion( idSeccion );
+    delete( idSeccion: number ): Promise<string> {
+        return this.datasource.delete( idSeccion );
     }
     
-    deleteSecciones(idCurso: number): Promise<String> {
-        return this.datasource.deleteSecciones( idCurso );
+    deleteAll( idCurso: number ): Promise<string> {
+        return this.datasource.deleteAll( idCurso );
     }
 
-    createSeccion(createSeccionDto: CreateSeccionDTO): Promise<SeccionEntity> {
-        return this.datasource.createSeccion( createSeccionDto );
+    create( createSeccionDto: CreateSeccionDTO ): Promise<SeccionEntity> {
+        return this.datasource.create( createSeccionDto );
     }
     
-    updateSeccion(updateSeccionDto: UpdateSeccionDTO): Promise<SeccionEntity> {
-        return this.datasource.updateSeccion( updateSeccionDto );
+    update( updateSeccionDto: UpdateSeccionDTO ): Promise<SeccionEntity> {
+        return this.datasource.update( updateSeccionDto );
     }
 
 }

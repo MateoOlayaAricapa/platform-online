@@ -5,74 +5,74 @@ import { SeccionEntity } from "../../domain/entities";
 
 export class SeccionDatasourceImpl implements SeccionDatasource {
     
-    async deleteSeccion(idSeccion: number): Promise<String> {
-       
-        const seccion = await prisma.seccion.update({
+    async getById( id: number ): Promise<SeccionEntity> {
+        
+        const seccion = await prisma.seccion.findUnique({
             where: {
-                id_seccion: idSeccion
+                id_seccion: id,
+                deletedAt: false,
             },
-            data: {
-                deletedAt: true
-            }
         });
 
-        if ( !seccion ) throw 'Seccion no encontrada';
+        if ( !seccion ) throw 'Sección no encontrado';
+
+        return SeccionEntity.fromObject( seccion );
+
+    }
+
+    async delete( idSeccion: number ): Promise<string> {
+       
+        await this.getById( idSeccion );
+
+        await prisma.seccion.update({
+            where: {
+                id_seccion: idSeccion,
+            },
+            data: {
+                deletedAt: true,
+            },
+        });
 
         return 'Sección eliminada';
 
     }
     
-    async deleteSecciones(idCurso: number): Promise<String> {
+    async deleteAll( idCurso: number ): Promise<string> {
         
-        const secciones = await prisma.seccion.updateMany({
+        const { count } = await prisma.seccion.updateMany({
             where: {
                 id_curso: idCurso,
             },
             data: {
-                deletedAt: true
-            }
+                deletedAt: true,
+            },
         });
 
-        if ( !secciones ) throw 'Secciones no encontradas para el curso';
+        if ( count === 0 ) throw 'Secciones no encontradas para el curso';
 
         return 'Secciones eliminadas';
 
     }
     
-    async getSeccionById(id: number): Promise<SeccionEntity> {
-        
-        const seccion = await prisma.seccion.findUnique({
-            where: {
-                id_seccion: id,
-                deletedAt: false
-            }
-        });
-
-        if ( !seccion ) throw 'Seccion no encontrado';
-
-        return SeccionEntity.fromObject( seccion );
-
-    }
-    
-    async createSeccion(createSeccionDto: CreateSeccionDTO): Promise<SeccionEntity> {
+    async create( createSeccionDto: CreateSeccionDTO ): Promise<SeccionEntity> {
         
         const seccion = await prisma.seccion.create({
-            data: createSeccionDto
+            data: createSeccionDto,
         });
 
         return SeccionEntity.fromObject( seccion );
 
     }
     
-    async updateSeccion(updateSeccionDto: UpdateSeccionDTO): Promise<SeccionEntity> {
+    async update( updateSeccionDto: UpdateSeccionDTO ): Promise<SeccionEntity> {
         
-        await this.getSeccionById( updateSeccionDto.id );
+        await this.getById( updateSeccionDto.id );
 
         const seccion = await prisma.seccion.update({
             where: {
-                id_seccion: updateSeccionDto.id
+                id_seccion: updateSeccionDto.id,
             },
-            data: updateSeccionDto
+            data: updateSeccionDto.valuesToUpdate,
         });
 
         return SeccionEntity.fromObject( seccion );
