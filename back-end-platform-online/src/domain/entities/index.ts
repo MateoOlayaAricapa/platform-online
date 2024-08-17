@@ -6,3 +6,4 @@ export { AllCursosEntity } from "./allCursos.entity";
 export { SeccionEntity } from "./seccion.Entity";
 export { ClaseEntity } from "./clase.entity";
 export { FormacionEntity } from "./formacion.entity";
+export { RequisitoEntity } from "./requisito.entity";

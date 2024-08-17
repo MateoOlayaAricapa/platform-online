@@ -19,3 +19,6 @@ export { UpdateClaseDTO } from "./clase/update-clase.dto";
 
 export { CreateFormacionDTO } from "./formacion/create-formacion.dto";
 export { UpdateFormacionDTO } from "./formacion/update-formacion.dto";
+
+export { CreateRequisitoDTO } from "./requisito/create-requisito.dto";
+export { UpdateRequisitoDTO } from "./requisito/update-requisito.dto";

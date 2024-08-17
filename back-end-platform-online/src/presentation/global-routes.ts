@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { AsociativaRoutes, AuthRoutes, ClaseRoutes, CursoRoutes, FormacionRoutes, SeccionRoutes } from "./controllers";
+import { AsociativaRoutes, AuthRoutes, ClaseRoutes, CursoRoutes, FormacionRoutes, RequisitoRoutes, SeccionRoutes } from "./controllers";
 
 export class GlobalRoutes {
 
@@ -14,6 +14,7 @@ export class GlobalRoutes {
         router.use( '/api/seccion', SeccionRoutes.routes );
         router.use( '/api/clase', ClaseRoutes.routes );
         router.use( '/api/formacion', FormacionRoutes.routes );
+        router.use( '/api/requisito', RequisitoRoutes.routes );
 
         return router;
 
