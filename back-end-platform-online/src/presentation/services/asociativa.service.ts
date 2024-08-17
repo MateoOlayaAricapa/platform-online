@@ -47,9 +47,7 @@ export class AsociativaService {
             
             const result = await this.asociativaRepository.deleteUsuarioCurso( id );
 
-            return {
-                status: result
-            }
+            return result;
 
         } catch (error) {
             throw CustomError.internalServer(`${ error }`);
@@ -58,15 +56,13 @@ export class AsociativaService {
     }
 
     //* Entidad curso_tema
-    public async createCursoTema( createCursoTemaDto: CreateCourseTopicDTO ) {
+    public async createCursoTema( createCursosTemasDto: CreateCourseTopicDTO[] ) {
 
         try {
             
-            const curso_tema = await this.asociativaRepository.createCursoTema( createCursoTemaDto );
+            const result = await this.asociativaRepository.createCursoTema( createCursosTemasDto );
 
-            return {
-                curso_tema: { ...curso_tema },
-            }
+            return result;
 
         } catch (error) {
             throw CustomError.internalServer(`${ error }`);
@@ -80,9 +76,21 @@ export class AsociativaService {
 
             const result = await this.asociativaRepository.deleteCursoTema( id );
 
-            return {
-                status: result,
-            }
+            return result;
+            
+        } catch (error) {
+            throw CustomError.internalServer(`${ error }`);
+        }
+
+    }
+
+    public async deleteCursoTemaAll( idCurso: number ) {
+
+        try {
+
+            const result = await this.asociativaRepository.deleteCursoTemaAll( idCurso );
+
+            return result;
             
         } catch (error) {
             throw CustomError.internalServer(`${ error }`);

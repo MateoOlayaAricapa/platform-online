@@ -4,14 +4,15 @@ import { CreateCourseTopicDTO, CreateUserCourseDTO, UpdateUserCourseDTO } from "
 import { CursoTemaEntity, UsuarioCursoEntity } from "../../domain/entities";
 
 export class AsociativaDatasourceImpl implements AsociativaDatasource {
+
     //* Entidad usuario_curso
-    async getUsuarioCursoById(id: number): Promise<UsuarioCursoEntity> {
+    async getUsuarioCursoById( id: number ): Promise<UsuarioCursoEntity> {
         
         const usuario_curso = await prisma.usuario_curso.findUnique({
             where: {
                 id_usuario_curso: id,
-                deletedAt: false
-            }
+                deletedAt: false,
+            },
         });
 
         if ( !usuario_curso ) throw 'Usuario_curso no encontrado';
@@ -20,7 +21,7 @@ export class AsociativaDatasourceImpl implements AsociativaDatasource {
 
     }
 
-    async updateUsuarioCurso(updateUserCourseDto: UpdateUserCourseDTO): Promise<UsuarioCursoEntity> {
+    async updateUsuarioCurso( updateUserCourseDto: UpdateUserCourseDTO ): Promise<UsuarioCursoEntity> {
         
         await this.getUsuarioCursoById( updateUserCourseDto.id_usuario_curso );
 
@@ -35,24 +36,24 @@ export class AsociativaDatasourceImpl implements AsociativaDatasource {
 
     }
 
-    async deleteUsuarioCurso(id: number): Promise<string> {
+    async deleteUsuarioCurso( id: number ): Promise<string> {
         
         await this.getUsuarioCursoById( id );
 
         await prisma.usuario_curso.update({
             where: {
-                id_usuario_curso: id
+                id_usuario_curso: id,
             },
             data: {
-                deletedAt: true
-            }
+                deletedAt: true,
+            },
         });
 
         return 'Usuario_curso eliminado';
         
     }
     
-    async createUsuarioCurso(createUserCourseDto: CreateUserCourseDTO): Promise<UsuarioCursoEntity> {
+    async createUsuarioCurso( createUserCourseDto: CreateUserCourseDTO ): Promise<UsuarioCursoEntity> {
         
         const usuario_curso = await prisma.usuario_curso.create({
             data: { ...createUserCourseDto }
@@ -63,34 +64,7 @@ export class AsociativaDatasourceImpl implements AsociativaDatasource {
     }
 
     //* Entidad curso_tema
-    async createCursoTema(createCourseTopicDto: CreateCourseTopicDTO): Promise<CursoTemaEntity> {
-        
-        const curso_tema = await prisma.curso_tema.create({
-            data: createCourseTopicDto
-        });
-
-        return CursoTemaEntity.fromObject( curso_tema );
-
-    }
-
-    async deleteCursoTema( id: number ): Promise<string> {
-
-        await this.getCursoTemaById( id );
-
-        await prisma.curso_tema.update({
-            where: {
-                id_curso_tema: id
-            },
-            data: {
-                deletedAt: true
-            }
-        });
-
-        return 'Tema eliminado del curso';
-
-    }
-
-    async getCursoTemaById(id: number): Promise<CursoTemaEntity> {
+    async getCursoTemaById( id: number ): Promise<CursoTemaEntity> {
         
         const curso_tema = await prisma.curso_tema.findUnique({
             where: {
@@ -105,5 +79,51 @@ export class AsociativaDatasourceImpl implements AsociativaDatasource {
 
     }
     
+    async createCursoTema( createCoursesTopicsDto: CreateCourseTopicDTO[] ): Promise<string> {
+        
+        const { count } = await prisma.curso_tema.createMany({
+            data: createCoursesTopicsDto,
+        });
 
+        if ( count === 0 ) throw 'Problemas al crear curso-temas';
+
+        return 'Curso-temas creados';
+
+    }
+
+    async deleteCursoTema( id: number ): Promise<string> {
+
+        await this.getCursoTemaById( id );
+
+        await prisma.curso_tema.update({
+            where: {
+                id_curso_tema: id,
+            },
+            data: {
+                deletedAt: true,
+            },
+        });
+
+        return 'Curso-tema eliminado del curso';
+
+    }
+
+    async deleteCursoTemaAll( idCurso: number ): Promise<string> {
+        
+        const { count } = await prisma.curso_tema.updateMany({
+            where: {
+                id_curso: idCurso,
+                deletedAt: false,
+            },
+            data: {
+                deletedAt: true,
+            },
+        });
+
+        if ( count === 0 ) throw 'Curso-temas no encontrados para el curso';
+
+        return 'Curso-temas eliminados';
+
+    }
+    
 }

@@ -24,6 +24,7 @@ export class AsociativaRoutes {
 
         router.post( '/create/curso-tema', [ AuthMiddleware.validateJWT ], asociativaController.createCursoTema );
         router.delete( '/delete/curso-tema/:id', [ AuthMiddleware.validateJWT ], asociativaController.deleteCursoTema );
+        router.delete( '/deleteAll/curso-tema/:id', [ AuthMiddleware.validateJWT ], asociativaController.deleteCursoTemaAll );
 
         return router;
 

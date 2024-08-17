@@ -49,11 +49,11 @@ export class AsociativaController {
     //* Entidad curso_tema
     public createCursoTema = ( req: Request, res: Response ) => {
 
-        const { createCourseTopic, error } = CreateCourseTopicDTO.create({ ...req.body });
+        const { createCoursesTopics, error } = CreateCourseTopicDTO.create([ ...req.body ]);
         if ( error ) return res.status( 400 ).json( error );
 
-        this.asociativaService.createCursoTema( createCourseTopic! )
-            .then( curso_tema => res.json({ message: 'success', data: curso_tema }) )
+        this.asociativaService.createCursoTema( createCoursesTopics! )
+            .then( result => res.json({ message: 'success', data: result }) )
             .catch( err => handleError( err, res ) )
 
     }
@@ -64,7 +64,18 @@ export class AsociativaController {
         if ( !id ) return res.status(400).json({ error: 'El campo [id] está vacío' });
         
         this.asociativaService.deleteCursoTema( parseInt(id) )
-            .then( result => res.json({ message: 'success', data: { ...result } }) )
+            .then( result => res.json({ message: 'success', data: result }) )
+            .catch( err => handleError( err, res ) )
+
+    }
+
+    public deleteCursoTemaAll = ( req: Request, res: Response ) => {
+
+        const { id } = req.params;
+        if ( !id ) return res.status(400).json({ error: 'id está vacío' });
+
+        this.asociativaService.deleteCursoTemaAll( parseInt(id) )
+            .then( result => res.json({ message: 'success', data: result }) )
             .catch( err => handleError( err, res ) )
 
     }

@@ -5,7 +5,7 @@ interface CreateCourseTopicOptions {
 
 type createReturn = {
     error?              : string;
-    createCourseTopic?  : CreateCourseTopicDTO;
+    createCoursesTopics?: CreateCourseTopicDTO[];
 }
 
 export class CreateCourseTopicDTO {
@@ -19,20 +19,45 @@ export class CreateCourseTopicDTO {
         this.id_tema    = id_tema;
     }
 
-    public static create( reqBody: { [key: string]: any } ): createReturn {
+    private static isReadyToCreateCoursesTopics( cursosTemas: { [key: string]: any }[] ): string | undefined {
 
-        const { id_curso, id_tema } = reqBody;
+        for( let cursoTema of cursosTemas ) {
 
-        if ( !id_curso ) return { error: 'El campo [id_curso] está vacío' };
-        if ( !id_tema )  return { error: 'El campo [id_tema] está vacío' };
+            for( let propertie_mandatory of ['id_curso', 'id_tema'] ) {
 
-        if ( !Number.isInteger( id_curso ) ) return { error: 'El campo [id_curso] no es un número' };
-        if ( !Number.isInteger( id_tema ) )  return { error: 'El campo [id_tema] no es un número' };
+                if ( !Object.getOwnPropertyNames( cursoTema ).includes( propertie_mandatory ) ) {
+                    return `${ propertie_mandatory } es obligatoria`;
+                }
 
-        return {
-            createCourseTopic: new CreateCourseTopicDTO({ id_curso, id_tema }),
+            }
+
+            for( let field in cursoTema ) {
+
+                switch ( typeof cursoTema[field] ) {
+                    case 'number':
+                        if ( cursoTema[field] < 0 ) return `${ field } no debe ser menor a cero`;
+                        break;
+                    case 'string':
+                        if ( field === 'id_curso' ) return `${ field } debe ser un número`;
+                        if ( field === 'id_tema' )  return `${ field } debe ser un número`;
+                        break;
+                }
+
+            }
+
         }
 
+    }
+
+    public static create( reqBody: { [key: string]: any }[] ): createReturn {
+
+        const result = this.isReadyToCreateCoursesTopics( reqBody );
+        if ( result ) return { error: result };
+
+        return {
+            createCoursesTopics: reqBody.map( ({ id_curso, id_tema }) => new CreateCourseTopicDTO({ id_curso, id_tema }) ),
+        }
+        
     }
 
 }

@@ -25,4 +25,10 @@ export class CursoTemaEntity {
 
     }
 
+    public static fromObjects( objects: { [key: string]: any }[] ): CursoTemaEntity[] {
+
+        return objects.map( ({ id_curso, id_curso_tema, id_tema }) => new CursoTemaEntity({ id_curso, id_curso_tema, id_tema }) );
+
+    }
+
 }

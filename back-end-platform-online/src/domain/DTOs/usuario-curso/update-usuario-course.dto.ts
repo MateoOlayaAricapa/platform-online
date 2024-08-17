@@ -24,16 +24,13 @@ export class UpdateUserCourseDTO {
 
     get valuesToUpdate() {
 
-        const objectUpdate: { [key: string]: any } = {};
+        const objectToUpdate: { [key: string]: any } = {};
 
-        for( const attribute of Object.keys(this) ) {
-
-            const value = ( this as any )[attribute];
-            if ( value && attribute !=='id_usuario_curso' ) objectUpdate[attribute] = value;
-
+        for( const key in this ) {
+            if ( this[key] && key !== 'id_usuario_curso' ) objectToUpdate[key] = this[key];
         }
 
-        return objectUpdate;
+        return objectToUpdate;
 
     }
 
@@ -44,7 +41,7 @@ export class UpdateUserCourseDTO {
         if ( !id ) return { error: 'El campo [id] está vacío' };
 
         return {
-            updateUsuarioCurso: new UpdateUserCourseDTO({ rol, estaCompletado, id_usuario_curso: id })
+            updateUsuarioCurso: new UpdateUserCourseDTO({ rol, estaCompletado, id_usuario_curso: id }),
         }
 
     }

@@ -10,28 +10,33 @@ export class AsociativaRepositoryImpl implements AsociativaRepository {
     ){}
 
     //* Entidad usuario_curso
-    updateUsuarioCurso(updateUserCourseDto: UpdateUserCourseDTO): Promise<UsuarioCursoEntity> {
+    updateUsuarioCurso( updateUserCourseDto: UpdateUserCourseDTO ): Promise<UsuarioCursoEntity> {
         return this.datasource.updateUsuarioCurso( updateUserCourseDto );
     }
 
-    deleteUsuarioCurso(id: number): Promise<string> {
+    deleteUsuarioCurso( id: number ): Promise<string> {
         return this.datasource.deleteUsuarioCurso( id );
     }
 
-    createUsuarioCurso(createUserCourseDto: CreateUserCourseDTO): Promise<UsuarioCursoEntity> {
+    createUsuarioCurso( createUserCourseDto: CreateUserCourseDTO ): Promise<UsuarioCursoEntity> {
         return this.datasource.createUsuarioCurso( createUserCourseDto );
     }
 
     //* Entidad curso_tema
-    createCursoTema(createCourseTopicDto: CreateCourseTopicDTO): Promise<CursoTemaEntity> {
-        return this.datasource.createCursoTema( createCourseTopicDto );
+    getCursoTemaById( id: number ): Promise<CursoTemaEntity> {
+        return this.datasource.getCursoTemaById( id );
     }
 
-    deleteCursoTema(id: number): Promise<string> {
+    createCursoTema( createCoursesTopicsDto: CreateCourseTopicDTO[] ): Promise<string> {
+        return this.datasource.createCursoTema( createCoursesTopicsDto );
+    }
+
+    deleteCursoTema( id: number ): Promise<string> {
         return this.datasource.deleteCursoTema( id );
     }
-    getCursoTemaById(id: number): Promise<CursoTemaEntity> {
-        return this.datasource.getCursoTemaById( id );
+
+    deleteCursoTemaAll( idCurso: number ): Promise<string> {
+        return this.datasource.deleteCursoTemaAll( idCurso );
     }
 
 }
