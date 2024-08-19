@@ -22,3 +22,6 @@ export { UpdateFormacionDTO } from "./formacion/update-formacion.dto";
 
 export { CreateRequisitoDTO } from "./requisito/create-requisito.dto";
 export { UpdateRequisitoDTO } from "./requisito/update-requisito.dto";
+
+export { CreateTemaDTO } from "./tema/create-tema.dto";
+export { UpdateTemaDTO } from "./tema/update-tema.dto";

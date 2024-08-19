@@ -5,3 +5,4 @@ export { SeccionRepository } from "./seccion.repository";
 export { ClaseRepository } from './clase.repository';
 export { FormacionRepository } from "./formacion.repository";
 export { RequisitoRepository } from "./requisito.repository";
+export { TemaRepository } from "./tema.repository";
