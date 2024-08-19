@@ -8,7 +8,7 @@ export class CursoService {
         private readonly cursoRepository: CursoRepository,
     ){}
 
-    public async createCurso( createCursoDto: CreateCourseDTO ) {
+    public async create( createCursoDto: CreateCourseDTO ) {
 
         try {
 
@@ -24,9 +24,12 @@ export class CursoService {
 
     }
 
-    public async updateCurso( updateCursoDto: UpdateCourseDTO ) {
+    public async update( updateCursoDto: UpdateCourseDTO ) {
 
         try {
+
+            const isNothing = updateCursoDto.nothingToUpdate();
+            if ( isNothing ) throw CustomError.badRequest('No hay datos a actualizar'); 
 
             const { id_curso, ...cursoEntity } = await this.cursoRepository.updateCurso( updateCursoDto );
             
@@ -40,7 +43,7 @@ export class CursoService {
 
     }
 
-    public async deleteCurso( id: number ) {
+    public async delete( id: number ) {
 
         try {
             
@@ -56,7 +59,7 @@ export class CursoService {
 
     }
 
-    public async getCursos( getAllCourses: GetAllCoursesDTO ) {
+    public async getAll( getAllCourses: GetAllCoursesDTO ) {
 
         try {
             
@@ -70,7 +73,7 @@ export class CursoService {
 
     }
 
-    public async getCursoById( id: number ) {
+    public async getById( id: number ) {
 
         try {
             

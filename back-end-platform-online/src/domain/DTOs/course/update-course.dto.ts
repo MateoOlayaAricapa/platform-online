@@ -39,15 +39,22 @@ export class UpdateCourseDTO {
         this.id              = id;
     }
 
+    public nothingToUpdate(): boolean {
+
+        for( let key in this ) {
+            if ( this[key] !== undefined && key !== 'id' ) return false;
+        }
+
+        return true;
+
+    }
+
     get valuesToUpdate() {
 
         const objectUpdate: { [key: string]: any } = {};
 
-        for( const attribute of Object.keys(this) ) {
-
-            const value = ( this as any )[attribute];
-            if ( value && attribute !=='id' ) objectUpdate[attribute] = value;
-
+        for( let key in this ) {
+            if ( this[key] && key !=='id' ) objectUpdate[key] = this[key];
         }
 
         return objectUpdate;
@@ -57,8 +64,7 @@ export class UpdateCourseDTO {
     static update( reqBody: { [key: string]: any } ): updateReturn {
 
         const { descripcion, idioma, imagen_url, titulo, total_secciones, total_tiempo, video_url, id } = reqBody;
-
-        if ( !id ) return { error: 'El campo [id] está vacío' };
+        if ( !id ) return { error: 'El id está vacío' };
 
         return {
             updateCourse: new UpdateCourseDTO({ descripcion, idioma, imagen_url, titulo, total_secciones, total_tiempo, video_url, id }),
