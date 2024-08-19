@@ -40,19 +40,40 @@ export class CreateCourseDTO {
         this.video_url          = video_url;
     }
 
+    private static ReadyToCreateCourse( course: { [key: string]: any } ): string | undefined {
+
+        const properties_object = Object.getOwnPropertyNames( course );
+
+        for( let mandatory_propertie of ['titulo', 'descripcion', 'fecha_creacion', 'idioma', 'imagen_url', 'total_clases', 'total_secciones', 'total_tiempo', 'video_url'] ) {
+
+            if ( !properties_object.includes( mandatory_propertie ) ) {
+                return `[ ${ mandatory_propertie } ] es obligatoria`;
+            }
+
+        }
+
+        for( let field in course ) {
+
+            switch ( typeof course[field] ) {
+                case 'string':
+                    if ( course[field] === '' ) return `[${ field }] está vacío`;
+                    break;
+
+                case 'number':
+                    if ( course[field] < 0 ) return `[${ field }] no debe ser menor a cero`;
+                    break;
+            }
+
+        }
+
+    }
+
     public static create( reqBody: { [key: string]: any } ): createReturn {
 
         const { titulo, descripcion, fecha_creacion, idioma, imagen_url, total_clases, total_secciones, total_tiempo, video_url } = reqBody;
 
-        if ( !titulo )          return { error: 'El campo [titulo] está vacío' };
-        if ( !descripcion )     return { error: 'El campo [descripcion] está vacío' };
-        if ( !fecha_creacion )  return { error: 'El campo [fecha_creacion] está vacío' };
-        if ( !idioma )          return { error: 'El campo [idioma] está vacío' };
-        if ( !imagen_url )      return { error: 'El campo [imagen_url] está vacío' };
-        if ( !total_clases )    return { error: 'El campo [total_clases] está vacío' };
-        if ( !total_secciones ) return { error: 'El campo [total_secciones] está vacío' };
-        if ( !total_tiempo )    return { error: 'El campo [total_tiempo] está vacío' };
-        if ( !video_url )       return { error: 'El campo [video_url] está vacío' };
+        const result = this.ReadyToCreateCourse( reqBody );
+        if ( result ) return { error: result };
 
         return {
             createCourse: new CreateCourseDTO({ 

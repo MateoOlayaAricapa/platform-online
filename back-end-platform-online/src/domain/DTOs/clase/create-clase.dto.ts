@@ -31,18 +31,16 @@ export class CreateClaseDTO {
         this.estaCompletado  = estaCompletado;
     }
 
-    private static isReadyToCreateClase( clases: { [key: string]: any }[] ): string | undefined {
+    private static ReadyToCreateClase( clases: { [key: string]: any }[] ): string | undefined {
 
         for( let clase of clases ) {
 
             const properties_object = Object.getOwnPropertyNames( clase );
 
-            for( let mandatory_propiertie of ['id_seccion', 'titulo', 'tiempo', 'url_contenido', 'tipo', 'estaCompletado'] ) {
+            for( let mandatory_propertie of ['id_seccion', 'titulo', 'tiempo', 'url_contenido', 'tipo', 'estaCompletado'] ) {
 
-                if ( !properties_object.includes( mandatory_propiertie ) ) {
-
-                    return `[ ${ mandatory_propiertie } ] es obligatoria`;
-                
+                if ( !properties_object.includes( mandatory_propertie ) ) {
+                    return `[ ${ mandatory_propertie } ] es obligatoria`;
                 }
             
             }
@@ -51,15 +49,16 @@ export class CreateClaseDTO {
 
                 switch ( typeof clase[field] ) {
                     case 'boolean':
-                        if ( clase[field] === undefined ) return `${ field } está vacío`;
+                        if ( clase[field] === undefined ) return `[${ field }] está vacío`;
                         break;
+
                     case 'string':
-                        if ( clase[field] === '' ) return `${ field } está vacío`;
-                        if ( field === 'id_seccion' ) return `${ field } debe ser un número`;
+                        if ( clase[field] === '' ) return `[${ field }] está vacío`;
+                        if ( field === 'id_seccion' ) return `[${ field }] debe ser un número`;
                         break;
 
                     case 'number':
-                        if ( <number>clase[field] < 0 ) return `No puede ser menor a cero: ${ field }`;
+                        if ( clase[field] < 0 ) return `[${ field }] no debe ser menor a cero`;
                         break;
                 }
 
@@ -71,7 +70,7 @@ export class CreateClaseDTO {
 
     static create( reqBody: { [key: string]: any }[] ): createReturn {
 
-        const result = this.isReadyToCreateClase( reqBody );
+        const result = this.ReadyToCreateClase( reqBody );
         if ( result ) return { error: result };
 
         let createClases = reqBody.map(({ 
