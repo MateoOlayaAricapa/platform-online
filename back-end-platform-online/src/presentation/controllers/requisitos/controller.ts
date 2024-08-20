@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { RequisitoService } from "../../services";
 import { CreateRequisitoDTO, UpdateRequisitoDTO } from "../../../domain/DTOs";
-import { handleError } from "../../../domain/errors";
+import { handleError, handleErrorDTO } from "../../../domain/errors";
+import { handleResponse } from "../../../domain/responses-http";
 
 export class RequisitoController {
 
@@ -12,11 +13,11 @@ export class RequisitoController {
     public create = ( req: Request, res: Response ) => {
 
         const { createRequisitos, error } = CreateRequisitoDTO.create([ ...req.body ]);
-        if ( error ) return res.status(400).json({ error });
+        if ( error ) return handleErrorDTO( error, res );
 
         this.requisitoService.create( createRequisitos! )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
@@ -24,33 +25,33 @@ export class RequisitoController {
 
         const { id } = req.params;
         const { error, updateRequisito } = UpdateRequisitoDTO.update({ ...req.body, id: parseInt( id ) });
-        if ( error ) return res.status(400).json( error );
+        if ( error ) return handleErrorDTO( error, res );
 
         this.requisitoService.update( updateRequisito! )
-            .then( requisito => res.json({ message: 'success', data: { ...requisito } }) )
-            .catch( err => handleError( err, res ) )
+            .then( requisito => handleResponse( res, requisito ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
     public delete = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'id está vacío' });
+        if ( !id ) return handleErrorDTO( 'El id está vacío', res );
 
         this.requisitoService.delete( parseInt(id) )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
     public deleteAll = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'id está vacío' });
+        if ( !id ) return handleErrorDTO( 'El id está vacío', res );
 
         this.requisitoService.deleteAll( parseInt(id) )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 

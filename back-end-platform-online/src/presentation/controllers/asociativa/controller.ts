@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { AsociativaService } from "../../services/asociativa.service";
-import { handleError } from "../../../domain/errors";
+import { handleError, handleErrorDTO } from "../../../domain/errors";
 import { CreateCourseTopicDTO, CreateUserCourseDTO, UpdateUserCourseDTO } from "../../../domain/DTOs";
+import { handleResponse } from "../../../domain/responses-http";
 
 export class AsociativaController {
 
@@ -15,11 +16,11 @@ export class AsociativaController {
         const { user } = req.body;
 
         const { createUserCourse, error } = CreateUserCourseDTO.create({ ...req.body, id_usuario: user.id_usuario });
-        if ( error ) return res.status( 400 ).json( error );
+        if ( error ) return handleErrorDTO( error, res );
 
         this.asociativaService.createUsuarioCurso( createUserCourse! )
-            .then( usuarioCurso => res.json({ message: 'success', data: { ...usuarioCurso } }) )
-            .catch( err => handleError( err, res ) )
+            .then( usuarioCurso => handleResponse( res, usuarioCurso ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
@@ -27,22 +28,22 @@ export class AsociativaController {
 
         const { id } = req.params;
         const { error, updateUsuarioCurso } = UpdateUserCourseDTO.update({ ...req.body, id: parseInt(id) });
-        if ( error ) return res.status( 400 ).json( error );
+        if ( error ) return handleErrorDTO( error, res );
 
         this.asociativaService.updateUsuarioCurso( updateUsuarioCurso! )
-            .then( usuarioCurso => res.json({ message: 'success', data: usuarioCurso }) )
-            .catch( err => handleError( err, res ) )
+            .then( usuarioCurso => handleResponse( res, usuarioCurso ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
     public deleteUsuarioCurso = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'El campo [id] está vacío' });
+        if ( !id ) return handleErrorDTO( 'El id está vacío', res );
 
         this.asociativaService.deleteUsuarioCurso( parseInt(id) )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
@@ -50,33 +51,33 @@ export class AsociativaController {
     public createCursoTema = ( req: Request, res: Response ) => {
 
         const { createCoursesTopics, error } = CreateCourseTopicDTO.create([ ...req.body ]);
-        if ( error ) return res.status( 400 ).json( error );
+        if ( error ) return handleErrorDTO( error, res );
 
         this.asociativaService.createCursoTema( createCoursesTopics! )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
     public deleteCursoTema = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'El campo [id] está vacío' });
+        if ( !id ) return handleErrorDTO( 'El id está vacío', res );
         
         this.asociativaService.deleteCursoTema( parseInt(id) )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
     public deleteCursoTemaAll = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'id está vacío' });
+        if ( !id ) return handleErrorDTO( 'El id está vacío', res );
 
         this.asociativaService.deleteCursoTemaAll( parseInt(id) )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 

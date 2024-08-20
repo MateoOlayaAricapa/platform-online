@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { SeccionService } from "../../services";
 import { CreateSeccionDTO, UpdateSeccionDTO } from "../../../domain/DTOs";
-import { handleError } from "../../../domain/errors";
+import { handleError, handleErrorDTO } from "../../../domain/errors";
+import { handleResponse } from "../../../domain/responses-http";
 
 export class SeccionController {
 
@@ -12,45 +13,45 @@ export class SeccionController {
     public create = ( req: Request, res: Response ) => {
 
         const { error, createSeccion } = CreateSeccionDTO.create({ ...req.body });
-        if ( error ) return res.status(400).json( error );
+        if ( error ) return handleErrorDTO( error, res );
 
         this.seccionService.create( createSeccion! )
-            .then( seccion => res.json({ message: 'success', data: {...seccion } }) )
-            .catch( err => handleError( err, res ) )
+            .then( seccion => handleResponse( res, seccion ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
     public update = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        const { error, updateSeccion } = UpdateSeccionDTO.update({ ...req.body, id });
-        if ( error ) return res.status(400).json( error );
+        const { error, updateSeccion } = UpdateSeccionDTO.update({ ...req.body, id: parseInt( id ) });
+        if ( error ) return handleErrorDTO( error, res );
 
         this.seccionService.update( updateSeccion! )
-            .then( seccion => res.json({ message: 'success', data: { ...seccion } }) )
-            .catch( err => handleError( err, res ) )
+            .then( seccion => handleResponse( res, seccion ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
     public deleteAll = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'El id del curso está vacío' });
+        if ( !id ) if ( !id ) return handleErrorDTO( 'El id está vacío', res );
 
         this.seccionService.deleteAll( parseInt( id ) )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
     public delete = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'El id de la sección está vacío' });
+        if ( !id ) if ( !id ) return handleErrorDTO( 'El id está vacío', res );
 
         this.seccionService.delete( parseInt( id ) )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 

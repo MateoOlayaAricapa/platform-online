@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { CreateFormacionDTO, UpdateFormacionDTO } from "../../../domain/DTOs";
 import { FormacionService } from "../../services";
-import { handleError } from "../../../domain/errors";
+import { handleError, handleErrorDTO } from "../../../domain/errors";
+import { handleResponse } from "../../../domain/responses-http";
 
 export class FormacionController {
 
@@ -12,11 +13,11 @@ export class FormacionController {
     public create = ( req: Request, res: Response ) => {
 
         const { createFormaciones, error } = CreateFormacionDTO.create([ ...req.body ]);
-        if ( error ) return res.status(400).json({ error });
+        if ( error ) return handleErrorDTO( error, res );
 
         this.formacionService.create( createFormaciones! )
-            .then( formaciones => res.json({ message: 'success', data: formaciones }) )
-            .catch( err => handleError( err, res ) )
+            .then( formaciones => handleResponse( res, formaciones ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
@@ -25,33 +26,33 @@ export class FormacionController {
         const { id } = req.params;
 
         const { error, updateFormacion } = UpdateFormacionDTO.update({ ...req.body, id: parseInt( id ) });
-        if ( error ) return res.status(400).json({ error });
+        if ( error ) return handleErrorDTO( error, res );
 
         this.formacionService.update( updateFormacion! )
-            .then( formacion => res.json({ message: 'success', data: formacion }) )
-            .catch( err => handleError( err, res ) )
+            .then( formacion => handleResponse( res, formacion ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
     public delete = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'El id está vacío' });
+        if ( !id ) return handleErrorDTO( 'El id está vacío', res );
 
         this.formacionService.delete( parseInt( id ) )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
     public deleteAll = ( req: Request, res: Response ) => {
         
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'El id está vacío' });
+        if ( !id ) return handleErrorDTO( 'El id está vacío', res );
 
         this.formacionService.deleteAll( parseInt( id ) )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 

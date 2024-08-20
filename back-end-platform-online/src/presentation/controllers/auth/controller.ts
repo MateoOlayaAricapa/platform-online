@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { AuthService } from "../../services";
 import { LoginUserDTO, RegisterUserDTO, UpdateUserDTO } from "../../../domain/DTOs";
-import { handleError } from "../../../domain/errors";
+import { handleError, handleErrorDTO } from "../../../domain/errors";
+import { handleResponse } from "../../../domain/responses-http";
 
 export class AuthController {
 
@@ -12,10 +13,10 @@ export class AuthController {
     public login = ( req: Request, res: Response ) => {
 
         const { error, loginUser } = LoginUserDTO.login({ ...req.body });
-        if ( error ) return res.status( 400 ).json( error );
+        if ( error ) return handleErrorDTO( error, res );
 
         this.authService.loginUser( loginUser! )
-            .then( user => res.json({ message: 'success', data: { ...user } }) )
+            .then( user => handleResponse( res, user ) )
             .catch( error => handleError( error, res ) )
 
     }
@@ -23,10 +24,10 @@ export class AuthController {
     public register = ( req: Request, res: Response ) => {
 
         const { error, registerUser } = RegisterUserDTO.create({ ...req.body });
-        if ( error ) return res.status( 400 ).json( error );
+        if ( error ) return handleErrorDTO( error, res );
 
         this.authService.registerUser( registerUser! )
-            .then( user => res.json({ message: 'success', data: { ...user } }) )
+            .then( user => handleResponse( res, user ) )
             .catch( error => handleError( error, res ) );
 
     }
@@ -36,10 +37,10 @@ export class AuthController {
         const { user } = req.body;
         
         const { error, updateUser } = UpdateUserDTO.update({ ...req.body, id: user.id_usuario });
-        if ( error ) return res.status( 400 ).json( error );
+        if ( error ) return handleErrorDTO( error, res );
 
         this.authService.updateUser( updateUser! )
-            .then( user => res.json({ message: 'success', data: { ...user } }) )
+            .then( user => handleResponse( res, user ) )
             .catch( error => handleError( error, res ) );
 
     }
@@ -49,8 +50,8 @@ export class AuthController {
         const { user } = req.body;
 
         this.authService.deleteUser( parseInt( user.id_usuario ) )
-            .then( response => res.json({ message: 'success', data: { ...response } }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 

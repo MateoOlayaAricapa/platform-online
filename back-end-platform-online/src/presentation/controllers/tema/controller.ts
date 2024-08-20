@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { TemaService } from "../../services";
 import { CreateTemaDTO, UpdateTemaDTO } from "../../../domain/DTOs";
-import { handleError } from "../../../domain/errors";
+import { handleError, handleErrorDTO } from "../../../domain/errors";
+import { handleResponse } from "../../../domain/responses-http";
 
 export class TemaController {
 
@@ -12,11 +13,11 @@ export class TemaController {
     public create = ( req: Request, res: Response ) => {
 
         const { createTemas, error } = CreateTemaDTO.create([ ...req.body ]);
-        if ( error ) return res.status(400).json( error );
+        if ( error ) return handleErrorDTO( error, res );
 
         this.temaService.create( createTemas! )
-            .then( result => res.json({ message: 'success', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
@@ -24,22 +25,22 @@ export class TemaController {
 
         const { id } = req.params;
         const { error, updateTema } = UpdateTemaDTO.update({ ...req.body, id: parseInt( id ) });
-        if ( error ) return res.status(400).json( error );
+        if ( error ) return handleErrorDTO( error, res );
 
         this.temaService.update( updateTema! )
-            .then( tema => res.json({ message: 'success', data: tema }) )
-            .catch( err => handleError( err, res ) )
+            .then( tema => handleResponse( res, tema ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
     public delete = ( req: Request, res: Response ) => {
 
         const { id } = req.params;
-        if ( !id ) return res.status(400).json({ error: 'El id está vacío' });
+        if ( !id ) return handleErrorDTO( 'El id está vacío', res );
 
         this.temaService.delete( parseInt( id ) )
-            .then( result => res.json({ message: 'sucess', data: result }) )
-            .catch( err => handleError( err, res ) )
+            .then( result => handleResponse( res, result ) )
+            .catch( error => handleError( error, res ) )
 
     }
 
