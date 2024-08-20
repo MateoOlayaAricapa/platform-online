@@ -1,0 +1,30 @@
+import { Router } from "express";
+import { RequisitoController } from "./controller";
+import { RequisitoService } from "../../services";
+import { RequisitoDatasourceImpl } from "../../../infrastructure/datasource/requisito.datasource.impl";
+import { RequisitoRepositoryImpl } from "../../../infrastructure/repositories/requisito.repository.impl";
+import { AuthMiddleware } from "../../middlewares";
+
+export class RequisitoRoutes {
+
+    static get routes(): Router {
+
+        const router = Router();
+
+        const datasource          = new RequisitoDatasourceImpl();
+        const requisitoRepository = new RequisitoRepositoryImpl( datasource );
+        const requisitoService    = new RequisitoService( requisitoRepository );
+        
+        const requisitoController = new RequisitoController( requisitoService );
+
+        //* Endpoints
+        router.post( '/create', [ AuthMiddleware.validateJWT ], requisitoController.create );
+        router.put( '/update/:id', [ AuthMiddleware.validateJWT ], requisitoController.update );
+        router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], requisitoController.delete );
+        router.delete( '/deleteAll/:id', [ AuthMiddleware.validateJWT ], requisitoController.deleteAll );
+
+        return router;
+
+    }
+
+}
