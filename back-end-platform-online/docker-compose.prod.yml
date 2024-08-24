@@ -1,0 +1,53 @@
+services:
+  app:
+    build: 
+      context: .
+      target: ${STAGE}
+      dockerfile: Dockerfile
+    
+    image: mate0laya/platform-online-backend:1.0.0
+    depends_on:
+      - db
+    restart: always
+    container_name: platform-app
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      - STAGE=${STAGE}
+      - PORT=${PORT}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - POSTGRES_URL=${POSTGRES_URL}
+      - SEED=${SEED}
+
+  db:
+    container_name: postgres-db
+    image: postgres:16.3
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+
+  pgAdmin:
+    depends_on:
+      - db
+    container_name: pgAdmin
+    image: dpage/pgadmin4:8
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+    ports:
+      - 8080:80
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+volumes:
+  postgres-db:
+    external: false
+  pgadmin:
+    external: false

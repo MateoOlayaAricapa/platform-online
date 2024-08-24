@@ -1,0 +1,13 @@
+node_modules/
+pgadmin
+postgres-db
+.dockerignore
+
+nodemon.json
+docker-compose.yml
+docker-compose.prod.yml
+.gitignore
+
+dist
+.env
+.env.template
