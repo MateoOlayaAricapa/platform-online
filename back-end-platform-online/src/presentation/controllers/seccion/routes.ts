@@ -18,8 +18,8 @@ export class SeccionRoutes {
         const seccionController = new SeccionController( seccionService );
 
         //* Endpoints.
-        router.post( '/create', seccionController.create );
-        router.put( '/update/:id', seccionController.update );
+        router.post( '/create', [ AuthMiddleware.validateJWT ], seccionController.create );
+        router.put( '/update/:id', [ AuthMiddleware.validateJWT ], seccionController.update );
         router.delete( '/deleteAll/:id', [ AuthMiddleware.validateJWT ], seccionController.deleteAll );
         router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], seccionController.delete );
 
