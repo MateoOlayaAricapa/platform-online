@@ -11,19 +11,19 @@ export class CursoRoutes {
 
         const router = Router();
 
-        const datasource = new CursoDataSourceImpl();
-        const cursoRepository = new CursoRepositoryImpl( datasource );
-        const cursoService = new CursoService( cursoRepository );
+        const datasource   = new CursoDataSourceImpl();
+        const repository   = new CursoRepositoryImpl( datasource );
+        const service      = new CursoService( repository );
 
-        const cursoController = new CursoController( cursoService );
+        const controller   = new CursoController( service );
 
         //* Definiendo endpoints
-        router.post( '/create', [ AuthMiddleware.validateJWT ] ,cursoController.create );
-        router.put( '/update/:id', [ AuthMiddleware.validateJWT ], cursoController.update );
-        router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], cursoController.delete );
+        router.post( '/create', [ AuthMiddleware.validateJWT ] ,controller.create );
+        router.put( '/update/:id', [ AuthMiddleware.validateJWT ], controller.update );
+        router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], controller.delete );
 
-        router.get( '/getAll/:type', [ AuthMiddleware.validateJWT ], cursoController.getAll );
-        router.get( '/get/:id', [ AuthMiddleware.validateJWT ], cursoController.getById );
+        router.get( '/getAll/:type', [ AuthMiddleware.validateJWT ], controller.getAll );
+        router.get( '/get/:id', [ AuthMiddleware.validateJWT ], controller.getById );
 
         return router;
 
