@@ -29,7 +29,7 @@ describe('Pruebas a [routes.ts] para formación', () => {
 
     afterAll(async() => {
         await deleteFormacion( test_formacion.id_formacion );
-        testServer.close();
+        await testServer.close();
     });
 
     test('Debe borrar todas las formaciones para un curso - endpoint: [/api/formacion/deleteAll/:id]', async() => { 
@@ -111,7 +111,7 @@ describe('Pruebas de errores a [routes.ts] para formación', () => {
     });
 
     afterAll(async() => {
-        testServer.close();
+        await testServer.close();
     });
 
     test('Debe mostrar un error 400 si falta una propiedad para crear una formación - endpoint: [/api/formacion/create]', async() => {  

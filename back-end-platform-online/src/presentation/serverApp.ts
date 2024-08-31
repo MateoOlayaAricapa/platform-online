@@ -34,7 +34,7 @@ export class ServerApp {
 
     }
 
-    public close() {
+    async close() {
         this.serverListener?.close();
     }
 

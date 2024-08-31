@@ -19,7 +19,7 @@ describe('Pruebas a [routes.ts] para course', () => {
 
     afterAll(async() => {
         await updateCourseTest( course );
-        testServer.close();
+        await testServer.close();
     });
 
     test('Debe traer los cursos de un usuario con rol instructor - endpoint: [/api/curso/getAll/:type]', async() => { 
