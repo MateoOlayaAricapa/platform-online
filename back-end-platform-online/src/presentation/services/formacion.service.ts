@@ -48,7 +48,7 @@ export class FormacionService {
         
         try {
             
-            const result = await this.formacionRepository.deleteAll( idFormacion );
+            const result = await this.formacionRepository.delete( idFormacion );
 
             return result;
 

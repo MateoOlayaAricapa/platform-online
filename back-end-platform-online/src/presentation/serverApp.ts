@@ -7,9 +7,10 @@ interface ServerOptions {
 
 export class ServerApp {
 
-    private app = express();
+    public readonly app = express();
     private readonly port   : number;
     private readonly routes : Router;
+    private serverListener? : any;
 
     constructor( options: ServerOptions ){
         const { PORT, ROUTES } = options;
@@ -27,10 +28,14 @@ export class ServerApp {
         this.app.use( this.routes );
 
         //* Ejecución del servidor
-        this.app.listen(this.port, () => {
+        this.serverListener = this.app.listen(this.port, () => {
             console.log(`Servidor funcionando en el puerto: ${ this.port }`);
-        }); 
+        });
 
+    }
+
+    public close() {
+        this.serverListener?.close();
     }
 
 }
