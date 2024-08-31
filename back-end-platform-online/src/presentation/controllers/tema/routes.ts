@@ -11,16 +11,16 @@ export class TemaRoutes {
 
         const router = Router();
 
-        const datasource     = new TemaDatasourceImpl();
-        const repository     = new TemaRepositoryImpl( datasource );
-        const temaService    = new TemaService( repository );
+        const datasource    = new TemaDatasourceImpl();
+        const repository    = new TemaRepositoryImpl( datasource );
+        const service       = new TemaService( repository );
 
-        const temaController = new TemaController( temaService );
+        const controller    = new TemaController( service );
 
         //* Endpoints
-        router.post( '/create', [AuthMiddleware.validateJWT], temaController.create );
-        router.put( '/update/:id', [AuthMiddleware.validateJWT], temaController.update );
-        router.delete( '/delete/:id', [AuthMiddleware.validateJWT], temaController.delete );
+        router.post( '/create', [AuthMiddleware.validateJWT], controller.create );
+        router.put( '/update/:id', [AuthMiddleware.validateJWT], controller.update );
+        router.delete( '/delete/:id', [AuthMiddleware.validateJWT], controller.delete );
 
         return router;
 

@@ -12,16 +12,16 @@ export class AuthRoutes {
         const router = Router();
 
         const datasource = new UsuarioDatasourceImpl();
-        const usuarioRepository = new UsuarioRepositoryImpl( datasource );
-        const authService = new AuthService( usuarioRepository );
+        const repository = new UsuarioRepositoryImpl( datasource );
+        const service    = new AuthService( repository );
         
-        const authController = new AuthController( authService );
+        const controller = new AuthController( service );
 
         //* EndPoints
-        router.get('/login', authController.login );
-        router.post( '/register', authController.register );
-        router.put( '/update', [ AuthMiddleware.validateJWT ], authController.update );
-        router.delete( '/delete', [ AuthMiddleware.validateJWT ], authController.delete );
+        router.get('/login', controller.login );
+        router.post( '/register', controller.register );
+        router.put( '/update', [ AuthMiddleware.validateJWT ], controller.update );
+        router.delete( '/delete', [ AuthMiddleware.validateJWT ], controller.delete );
 
         return router;
 

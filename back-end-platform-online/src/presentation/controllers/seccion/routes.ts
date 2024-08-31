@@ -12,16 +12,16 @@ export class SeccionRoutes {
         const router = Router();
 
         const datasource = new SeccionDatasourceImpl();
-        const seccionRepository = new SeccionRepositoryImpl( datasource );
-        const seccionService = new SeccionService( seccionRepository );
+        const repository = new SeccionRepositoryImpl( datasource );
+        const service    = new SeccionService( repository );
 
-        const seccionController = new SeccionController( seccionService );
+        const controller = new SeccionController( service );
 
         //* Endpoints.
-        router.post( '/create', [ AuthMiddleware.validateJWT ], seccionController.create );
-        router.put( '/update/:id', [ AuthMiddleware.validateJWT ], seccionController.update );
-        router.delete( '/deleteAll/:id', [ AuthMiddleware.validateJWT ], seccionController.deleteAll );
-        router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], seccionController.delete );
+        router.post( '/create', [ AuthMiddleware.validateJWT ], controller.create );
+        router.put( '/update/:id', [ AuthMiddleware.validateJWT ], controller.update );
+        router.delete( '/deleteAll/:id', [ AuthMiddleware.validateJWT ], controller.deleteAll );
+        router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], controller.delete );
 
         return router;
 

@@ -11,16 +11,16 @@ export class FormacionRoutes {
 
         const router = Router();
 
-        const datasource          = new FormacionDatasourceImpl();
-        const formacionRepository = new FormacionRepositoryImpl( datasource );
-        const formacionService    = new FormacionService( formacionRepository );
+        const datasource = new FormacionDatasourceImpl();
+        const repository = new FormacionRepositoryImpl( datasource );
+        const service    = new FormacionService( repository );
 
-        const formacionController = new FormacionController( formacionService );
+        const controller = new FormacionController( service );
 
-        router.post( '/create', [ AuthMiddleware.validateJWT ], formacionController.create );
-        router.put( '/update/:id', [ AuthMiddleware.validateJWT ], formacionController.update );
-        router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], formacionController.delete );
-        router.delete( '/deleteAll/:id', [ AuthMiddleware.validateJWT ], formacionController.deleteAll );
+        router.post( '/create', [ AuthMiddleware.validateJWT ], controller.create );
+        router.put( '/update/:id', [ AuthMiddleware.validateJWT ], controller.update );
+        router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], controller.delete );
+        router.delete( '/deleteAll/:id', [ AuthMiddleware.validateJWT ], controller.deleteAll );
 
         return router;
 

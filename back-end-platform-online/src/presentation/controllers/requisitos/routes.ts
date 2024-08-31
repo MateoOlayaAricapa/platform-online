@@ -11,17 +11,17 @@ export class RequisitoRoutes {
 
         const router = Router();
 
-        const datasource          = new RequisitoDatasourceImpl();
-        const requisitoRepository = new RequisitoRepositoryImpl( datasource );
-        const requisitoService    = new RequisitoService( requisitoRepository );
+        const datasource = new RequisitoDatasourceImpl();
+        const repository = new RequisitoRepositoryImpl( datasource );
+        const service    = new RequisitoService( repository );
         
-        const requisitoController = new RequisitoController( requisitoService );
+        const controller = new RequisitoController( service );
 
         //* Endpoints
-        router.post( '/create', [ AuthMiddleware.validateJWT ], requisitoController.create );
-        router.put( '/update/:id', [ AuthMiddleware.validateJWT ], requisitoController.update );
-        router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], requisitoController.delete );
-        router.delete( '/deleteAll/:id', [ AuthMiddleware.validateJWT ], requisitoController.deleteAll );
+        router.post( '/create', [ AuthMiddleware.validateJWT ], controller.create );
+        router.put( '/update/:id', [ AuthMiddleware.validateJWT ], controller.update );
+        router.delete( '/delete/:id', [ AuthMiddleware.validateJWT ], controller.delete );
+        router.delete( '/deleteAll/:id', [ AuthMiddleware.validateJWT ], controller.deleteAll );
 
         return router;
 
