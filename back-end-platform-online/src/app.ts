@@ -2,7 +2,7 @@ import { envs } from "./config";
 import { GlobalRoutes, ServerApp } from "./presentation";
 
 //* Función auto-invocada
-(() => {
+(async() => {
 
     main();
 
