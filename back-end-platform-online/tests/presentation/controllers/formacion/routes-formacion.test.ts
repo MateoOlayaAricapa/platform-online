@@ -4,11 +4,11 @@ import { testServer } from '../../../test-server';
 
 import { FormacionEntity } from "../../../../src/domain/entities";
 
+import { getCourseTest } from "../../../helpers/get-course";
 import { 
     updateFormacionesTest, 
     updateFormacionTest, 
-    deleteFormacion, 
-    getCourseTest, 
+    deleteFormacion,
     getFormacionTest 
 } from "./helpers";
 

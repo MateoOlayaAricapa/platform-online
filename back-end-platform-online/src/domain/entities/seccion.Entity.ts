@@ -7,7 +7,7 @@ interface SeccionEntityOptions {
 
 export class SeccionEntity {
     
-    public readonly id_seccion  : Number;
+    public readonly id_seccion  : number;
     public readonly id_curso    : number;
     public readonly titulo      : string;
     public readonly total_tiempo: string;
