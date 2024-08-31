@@ -23,17 +23,14 @@ describe('Pruebas a [routes.ts] para auth', () => {
 
     beforeAll(async() => {
         await testServer.start();
-    });
-
-    beforeAll(async() => {
         await UserTest.create( userTest );
         await UserTest.delete( registerUserRequestPost );
     });
-
+    
     afterAll(async() => {
         await UserTest.delete( registerUserRequestPost );
         await UserTest.delete( userTest );
-        testServer.close();
+        await testServer.close();
     });
 
     test('Debe regresar un usuario - endpoint: [api/auth/login]', async() => {  

@@ -29,7 +29,7 @@ describe('Pruebas a [routes.ts] para sección', () => {
 
     afterAll(async() => {
         await deleteSeccionTest( test_seccion.id_seccion );
-        testServer.close();
+        await testServer.close();
     });
 
     test('Debe eliminar todas las secciones de un curso - endpoint: [/api/seccion/deleteAll/:id]', async() => { 
@@ -113,7 +113,7 @@ describe('Pruebas de error a [routes.ts] para sección', () => {
     });
 
     afterAll(async() => {
-        testServer.close();
+        await testServer.close();
     });
 
     test('Debe mostrar un error 400 si falta una propiedad para crear una sección - endpoint: [/api/seccion/create]', async() => { 
