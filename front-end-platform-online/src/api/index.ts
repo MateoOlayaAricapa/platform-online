@@ -1,0 +1,1 @@
+export { AxiosApiAdapter } from "./httpApi.adapter";

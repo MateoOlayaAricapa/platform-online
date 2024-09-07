@@ -1,12 +1,19 @@
+import { useAuthStore } from '../../../../hooks/useAuthStore';
 import './_errorMessage.scss';
 
-export const ErrorMessage = () => {
+interface Params {
+    message: string;
+}
+
+export const ErrorMessage = ( { message }: Params ) => {
+
+    const { onHandleErrorAuth } = useAuthStore();
 
     return (
         <div className="errorMessage">
 
-            <h1>Correo o contraseña incorrecta</h1>
-            <button className='style-button'>
+            <h1>{ message }</h1>
+            <button className='style-button' onClick={ () => onHandleErrorAuth( undefined ) }>
                 Cerrar
             </button>
             

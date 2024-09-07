@@ -1,6 +1,6 @@
 type IsValidatedReturn = {
-    errorMessage?: string;
-    status: boolean;
+    errorMessage?   : string;
+    status          : boolean;
 }
 
 export class ValidatedValueTexfield {
@@ -11,7 +11,7 @@ export class ValidatedValueTexfield {
 
         for ( const key of attributesOfObject ) {
            
-            if ( stateForm[ key ] === '' ) return { errorMessage: `field [ ${ key } ] empty`, status: false };
+            if ( stateForm[ key ] === '' ) return { status: false, errorMessage: `field [ ${ key } ] empty` };
             if ( stateForm[ key ].length === 0 ) return { status: false, errorMessage: `field [ ${ key } ] empty` };
 
         }

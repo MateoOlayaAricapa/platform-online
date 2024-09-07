@@ -6,10 +6,14 @@ import logo from "../../../assets/images/Logo.png";
 import { Textfield } from '../../../../components/textfield/textfield';
 import { useLogin } from './useLogin';
 import { ErrorMessage } from '../../components/error/errorMessage';
+import { Loading } from '../../../../components';
+
 
 export const LoginPage = () => {
 
-    const { onInputChange, stateForm, onHandleSubmit, onGoToRegister } = useLogin();
+    const { onInputChange, stateForm, onHandleSubmit, onGoToRegister, error, isLoadingAuth } = useLogin();
+
+    if ( !isLoadingAuth ) return <Loading/>;
 
     return (
         <div className="loginPage auth">
@@ -34,7 +38,7 @@ export const LoginPage = () => {
 
                     <form onSubmit={ onHandleSubmit } aria-label='submit-form'>
                         
-                        { false && <ErrorMessage/> }
+                        { !!error && <ErrorMessage message={ error }/> }
 
                         <Textfield 
                             type='email'

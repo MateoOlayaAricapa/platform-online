@@ -1,15 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { User } from "../../../models/user";
 
 interface InitialState {
-    status: 'authenticated' | 'no-authenticated';
-    user: {};
-    isLoadingAuth?: boolean; 
+    status          : 'authenticated' | 'no-authenticated';
+    user            : User | {};
+    isLoadingAuth?  : boolean;
+    error           : string | undefined;
 };
 
 const initialState: InitialState = {
-    status: 'no-authenticated',
-    user: {},
-    isLoadingAuth: undefined,
+    status          : 'no-authenticated',
+    user            : {},
+    isLoadingAuth   : true,
+    error           : undefined,
 };
 
 export const authSlice = createSlice({
@@ -21,20 +24,23 @@ export const authSlice = createSlice({
         },
         onLogin: ( state, { payload } ) => {
             state.isLoadingAuth = true;
-            state.status = 'authenticated';
-            state.user = payload;
+            state.status        = 'authenticated';
+            state.user          = payload;
+            state.error         = undefined;
         },
         onLogout: ( state ) => {
             state.isLoadingAuth = true;
-            state.status = 'no-authenticated';
-            state.user = {};
+            state.status        = 'no-authenticated';
+            state.user          = {};
+            state.error         = undefined;
         },
-        onResetAuth: ( state ) => {
-            state.isLoadingAuth = undefined;
-            state.status = 'no-authenticated';
-            state.user = {};
-        }
+        onError: ( state, { payload } ) => {
+            state.isLoadingAuth = true;
+            state.status        = 'no-authenticated';
+            state.user          = {};
+            state.error         = payload;
+        },
     }
 });
 
-export const { onLoadingAuth, onLogin, onLogout, onResetAuth } = authSlice.actions;
+export const { onLoadingAuth, onLogin, onLogout, onError } = authSlice.actions;

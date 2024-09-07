@@ -3,7 +3,7 @@ import { AppRouter } from "./app-router";
 import { Provider } from "react-redux";
 import { store } from "../store/stores";
 import { Suspense } from "react";
-import { Loading } from "../app/dashboard/components";
+import { Loading } from "../components";
 
 export const PlatformApp = () => {
 
