@@ -18,7 +18,7 @@ export class AuthRoutes {
         const controller = new AuthController( service );
 
         //* EndPoints
-        router.get('/login', controller.login );
+        router.post('/login', controller.login );
         router.post( '/register', controller.register );
         router.put( '/update', [ AuthMiddleware.validateJWT ], controller.update );
         router.delete( '/delete', [ AuthMiddleware.validateJWT ], controller.delete );

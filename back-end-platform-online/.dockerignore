@@ -11,3 +11,5 @@ docker-compose.prod.yml
 dist
 .env
 .env.template
+
+tests

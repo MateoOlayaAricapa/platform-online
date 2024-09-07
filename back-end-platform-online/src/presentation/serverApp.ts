@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+import cors from 'cors';
 
 interface ServerOptions {
     PORT    : number;
@@ -23,6 +24,7 @@ export class ServerApp {
         //* Middlewares
         this.app.use( express.json() );
         this.app.use( express.urlencoded({ extended: true }) );
+        this.app.use( cors() );
 
         //* GlobalRoutes
         this.app.use( this.routes );
